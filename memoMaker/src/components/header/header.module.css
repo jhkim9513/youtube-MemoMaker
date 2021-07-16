@@ -1,0 +1,24 @@
+.header {
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem;
+  background-color: rgb(61, 74, 185);
+  position: relative;
+}
+
+.title {
+  margin: 0;
+  color: white;
+}
+
+.logout {
+  position: absolute;
+  right: 3em;
+  top: 1em;
+  padding: 0.1em;
+  border-radius: 20%;
+  background-color: black;
+  color: white;
+  outline: 0;
+  cursor: pointer;
+}
