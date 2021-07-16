@@ -12,7 +12,7 @@ function App({ auth }) {
             <Login auth={auth} />
           </Route>
           <Route path="/memoMaker">
-            <MemoMaker />
+            <MemoMaker auth={auth} />
           </Route>
         </Switch>
       </BrowserRouter>
