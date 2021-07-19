@@ -1,0 +1,13 @@
+@value makerTitle from '../../common/colors.css';
+
+.creator {
+  flex-basis: 50%;
+  background-color: aqua;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1em;
+  color: makerTitle;
+}
