@@ -1,6 +1,10 @@
 @value makerTitle, creatorBack from '../../common/colors.css';
 
 .creator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   flex-basis: 20%;
   background-color: creatorBack;
 }

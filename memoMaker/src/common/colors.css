@@ -1,8 +1,23 @@
+/* Header and Footer */
+@value headerAndFooter: rgb(29, 29, 32);
+
+/* memoMaker */
 @value makerTitle: rgb(215, 234, 255);
+
+/* creator */
+@value creatorBack: #475353;
+
+/* memoCreateForm */
+@value createFormBorder: black;
+@value createFormBack: white;
+
+/* memoList */
+@value memoListBack: rgb(90, 86, 79);
 @value listShadow: rgba(217, 217, 217, 1);
 @value listBlack: black;
 @value listWhite: white;
-@value headerAndFooter: rgb(29, 29, 32);
-@value creatorBack: #475353;
-@value memoListBack: rgb(90, 86, 79);
 @value afterColor: gray;
+
+/* Button */
+@value buttonBack: black;
+@value buttonFont: white;

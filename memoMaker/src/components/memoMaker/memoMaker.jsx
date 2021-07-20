@@ -17,14 +17,14 @@ const MemoMaker = ({ auth }) => {
     },
     {
       id: "2",
-      url: "url~",
+      url: "https://www.youtube.com/embed/NqIJv3jklwU",
       title: "youtube title2",
       theme: "light",
       content: "blablabla~",
     },
     {
       id: "3",
-      url: "url~",
+      url: "https://www.youtube.com/embed/NqIJv3jklwU",
       title: "youtube title3",
       theme: "dark",
       content: "blablabla~",
@@ -42,11 +42,16 @@ const MemoMaker = ({ auth }) => {
       }
     });
   });
+
+  const createMemo = (memo) => {
+    const updated = [...memoList, memo];
+    setMemoList(updated);
+  };
   return (
     <section className={styles.memoMaker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <Creator />
+        <Creator createMemo={createMemo} />
         <MemoList memoList={memoList} />
       </div>
       <Footer />

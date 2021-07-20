@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./memo.module.css";
 
-// const DEFAULT_IMAGE = "../../img/";
+const DEFAULT_IMAGE = "images/default_img.png";
 
 const Memo = ({ memo }) => {
-  const { id, url, title, theme, content } = memo;
+  const { /*id,*/ url, title, theme, content } = memo;
   return (
     <li className={`${styles.memo} ${getTheme(theme)}`}>
       {url !== "" ? (
@@ -13,14 +13,14 @@ const Memo = ({ memo }) => {
           title="youtube iframe"
           id="ytplayer"
           type="text/html"
-          src="https://www.youtube.com/embed/NqIJv3jklwU"
+          src={url}
           frameBorder="0"
           allowFullScreen
         ></iframe>
       ) : (
         <img
           className={styles.default_img}
-          src="images/default_img.png"
+          src={DEFAULT_IMAGE}
           alt="default img"
         ></img>
       )}
