@@ -1,8 +1,21 @@
-@value makerTitle from '../../common/colors.css';
+@value makerTitle, memoListBack from '../../common/colors.css';
 
 .memoList {
-  flex-basis: 50%;
-  background-color: wheat;
+  width: 100%;
+  flex-basis: 80%;
+  background-color: memoListBack;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.listbox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {

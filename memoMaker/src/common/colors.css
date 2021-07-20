@@ -1,1 +1,8 @@
-@value makerTitle: #385461;
+@value makerTitle: rgb(215, 234, 255);
+@value listShadow: rgba(217, 217, 217, 1);
+@value listBlack: black;
+@value listWhite: white;
+@value headerAndFooter: rgb(29, 29, 32);
+@value creatorBack: #475353;
+@value memoListBack: rgb(90, 86, 79);
+@value afterColor: gray;

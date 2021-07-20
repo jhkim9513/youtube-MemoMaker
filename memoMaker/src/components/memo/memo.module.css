@@ -1,0 +1,68 @@
+@value listShadow, listBlack, listWhite, afterColor from '../../common/colors.css';
+
+.memo {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 0.5em;
+  border-radius: 1em;
+  background-color: bisque;
+  box-shadow: listShadow;
+  max-width: 70rem;
+}
+
+.memo.dark {
+  background-color: listBlack;
+  color: listWhite;
+}
+
+.memo.light {
+  background-color: listWhite;
+  color: listBlack;
+}
+
+.default_img {
+  width: 20em;
+  height: 10em;
+  padding: 0.7em;
+  margin-left: 0.5em;
+  margin-right: 1em;
+  border-radius: 10%;
+}
+
+.youtube {
+  width: 15em;
+  height: 10em;
+  padding: 0.7em;
+  margin-left: 0.5em;
+  margin-right: 1em;
+  border-radius: 10%;
+}
+
+.title,
+.content {
+  margin: 0;
+  margin-bottom: 0.3em;
+}
+
+.title {
+  font-size: 1.7rem;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 90%;
+  height: 2px;
+  background-color: afterColor;
+  transform: translateY(0.15em);
+}
+
+.content {
+  font-size: 0.8rem;
+}
+.memoBox {
+  width: 100%;
+  height: 100%;
+  padding: 0.5em;
+}

@@ -1,8 +1,10 @@
+@value headerAndFooter from '../../common/colors.css';
+
 .header {
   width: 100%;
   text-align: center;
   padding: 0.5rem;
-  background-color: rgb(61, 74, 185);
+  background-color: headerAndFooter;
   position: relative;
 }
 

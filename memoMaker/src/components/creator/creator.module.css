@@ -1,8 +1,8 @@
-@value makerTitle from '../../common/colors.css';
+@value makerTitle, creatorBack from '../../common/colors.css';
 
 .creator {
-  flex-basis: 50%;
-  background-color: aqua;
+  flex-basis: 20%;
+  background-color: creatorBack;
 }
 
 .title {
