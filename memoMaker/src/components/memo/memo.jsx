@@ -3,10 +3,13 @@ import styles from "./memo.module.css";
 
 const DEFAULT_IMAGE = "images/default_img.png";
 
-const Memo = ({ memo }) => {
+const Memo = ({ memo, goToDetail }) => {
   const { /*id,*/ url, title, theme, content } = memo;
   return (
-    <li className={`${styles.memo} ${getTheme(theme)}`}>
+    <li
+      className={`${styles.memo} ${getTheme(theme)}`}
+      onClick={() => goToDetail(memo)}
+    >
       {url !== "" ? (
         <iframe
           className={styles.youtube}

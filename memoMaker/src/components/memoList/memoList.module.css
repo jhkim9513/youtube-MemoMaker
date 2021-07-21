@@ -24,3 +24,9 @@
   margin-bottom: 1em;
   color: makerTitle;
 }
+
+@media screen and (max-width: 62rem) {
+  .memoList {
+    flex-basis: 100%;
+  }
+}

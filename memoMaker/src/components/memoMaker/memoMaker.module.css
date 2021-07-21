@@ -11,8 +11,31 @@
   flex: 1;
 }
 
+.selectedScreen {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.detail {
+  flex-basis: 90%;
+}
+
+.list {
+  display: flex;
+  flex-basis: 10%;
+}
+
 @media screen and (max-width: 62rem) {
   .container {
     flex-direction: column;
+  }
+  .selectedScreen {
+    flex-direction: column;
+  }
+  .list {
+    display: flex;
+    flex: 1;
+    width: 100%;
   }
 }
