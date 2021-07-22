@@ -3,7 +3,7 @@ import styles from "./app.module.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import MemoMaker from "./components/memoMaker/memoMaker";
 
-function App({ auth }) {
+function App({ auth, memoRepository }) {
   return (
     <div className={styles.app}>
       <BrowserRouter>
@@ -12,7 +12,7 @@ function App({ auth }) {
             <Login auth={auth} />
           </Route>
           <Route path="/memoMaker">
-            <MemoMaker auth={auth} />
+            <MemoMaker auth={auth} memoRepository={memoRepository} />
           </Route>
         </Switch>
       </BrowserRouter>

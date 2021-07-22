@@ -1,13 +1,9 @@
 @value makerTitle, memoListBack from '../../common/colors.css';
 
 .memoList {
-  width: 100%;
   flex-basis: 80%;
   background-color: memoListBack;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  overflow-y: auto;
 }
 
 .listbox {
