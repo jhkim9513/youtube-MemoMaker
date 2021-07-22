@@ -1,8 +1,8 @@
-import firebaseApp from "./firebase";
+import { firebaseDB } from "./firebase";
 
 class MemoRepository {
   syncMemo(userId, onUpdate) {
-    const ref = firebaseApp.database().ref(`${userId}/memoList`);
+    const ref = firebaseDB.ref(`${userId}/memoList`);
     ref.on("value", (snapshot) => {
       const value = snapshot.val();
       value && onUpdate(value);
@@ -11,11 +11,11 @@ class MemoRepository {
   }
 
   saveMemo(userId, memo) {
-    firebaseApp.database().ref(`${userId}/memoList/${memo.id}`).set(memo);
+    firebaseDB.ref(`${userId}/memoList/${memo.id}`).set(memo);
   }
 
   removeMemo(userId, memo) {
-    firebaseApp.database().ref(`${userId}/memoList/${memo.id}`).remove();
+    firebaseDB.ref(`${userId}/memoList/${memo.id}`).remove();
   }
 }
 

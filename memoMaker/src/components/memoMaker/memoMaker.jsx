@@ -58,7 +58,7 @@ const MemoMaker = ({ auth, memoRepository }) => {
         history.push("/");
       }
     });
-  });
+  }, [auth, history, userId]);
 
   const createMemo = (memo) => {
     setMemoList((memoList) => {

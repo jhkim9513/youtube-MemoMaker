@@ -4,7 +4,7 @@ import styles from "./memo.module.css";
 const DEFAULT_IMAGE = "images/default_img.png";
 
 const Memo = ({ memo, goToDetail }) => {
-  const { /*id,*/ url, title, theme, content } = memo;
+  const { url, title, theme, content } = memo;
   return (
     <li
       className={`${styles.memo} ${getTheme(theme)}`}
