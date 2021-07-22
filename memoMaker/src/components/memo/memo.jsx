@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./memo.module.css";
 
 const DEFAULT_IMAGE = "images/default_img.png";
 
-const Memo = ({ memo, goToDetail }) => {
+const Memo = memo(({ memo, goToDetail }) => {
   const { url, title, theme, content } = memo;
   return (
     <li
@@ -34,7 +34,7 @@ const Memo = ({ memo, goToDetail }) => {
       </div>
     </li>
   );
-};
+});
 
 function getTheme(theme) {
   switch (theme) {

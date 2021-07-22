@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React, { memo, useRef } from "react";
 import Button from "../button/button";
 import styles from "./memo_create_form.module.css";
 
-const MemoCreateForm = ({ createMemo }) => {
+const MemoCreateForm = memo(({ createMemo }) => {
   const formRef = useRef();
   const titleRef = useRef();
   const themeRef = useRef();
@@ -59,6 +59,6 @@ const MemoCreateForm = ({ createMemo }) => {
       </div>
     </form>
   );
-};
+});
 
 export default MemoCreateForm;

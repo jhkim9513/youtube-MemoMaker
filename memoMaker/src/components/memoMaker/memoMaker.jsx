@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Creator from "../creator/creator";
 import Footer from "../footer/footer";
@@ -15,30 +15,17 @@ const MemoMaker = ({ auth, memoRepository }) => {
   const [memoList, setMemoList] = useState({
     // 1: {
     //   id: "1",
-    //   url: "",
-    //   title: "youtube title1",
-    //   theme: "dark",
-    //   content: "blablabla~",
-    // },
-    // 2: {
-    //   id: "2",
     //   url: "https://www.youtube.com/embed/NqIJv3jklwU",
     //   title: "youtube title2",
     //   theme: "light",
     //   content: "blablabla~",
     // },
-    // 3: {
-    //   id: "3",
-    //   url: "https://www.youtube.com/embed/doXYwQixqHQ",
-    //   title: "youtube title3",
-    //   theme: "dark",
-    //   content: "blablabla~",
-    // },
   });
 
-  const onLogout = () => {
+  // 캐시로 등록하여 onLogout이 호출 될 때마다 재생성되는것을 방지
+  const onLogout = useCallback(() => {
     auth.logout();
-  };
+  }, [auth]);
 
   useEffect(() => {
     if (!userId) return;
