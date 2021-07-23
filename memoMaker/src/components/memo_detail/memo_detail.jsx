@@ -2,10 +2,11 @@ import React, { useRef } from "react";
 import Button from "../button/button";
 import styles from "./memo_detail.module.css";
 
-const MemoDetail = ({ selectedMemo, updateMemo, deleteMemo, goToMain }) => {
+const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
   const { title, url, content } = selectedMemo;
   const titleRef = useRef();
   const contentRef = useRef();
+  const themeRef = useRef();
 
   const onChange = (e) => {
     if (e.currentTarget == null) {
@@ -33,14 +34,26 @@ const MemoDetail = ({ selectedMemo, updateMemo, deleteMemo, goToMain }) => {
       )}
 
       <div className={styles.memoBox}>
-        <input
-          className={styles.title}
-          ref={titleRef}
-          name="title"
-          type="text"
-          value={title}
-          onChange={onChange}
-        />
+        <div className={styles.inputAndSelectBox}>
+          <input
+            className={styles.title}
+            ref={titleRef}
+            name="title"
+            type="text"
+            value={title}
+            onChange={onChange}
+          />
+          <select
+            ref={themeRef}
+            className={styles.select}
+            name="theme"
+            onChange={onChange}
+          >
+            <option value="light">light</option>
+            <option value="dark">dark</option>
+          </select>
+        </div>
+
         <textarea
           className={styles.content}
           ref={contentRef}
@@ -50,7 +63,8 @@ const MemoDetail = ({ selectedMemo, updateMemo, deleteMemo, goToMain }) => {
         ></textarea>
       </div>
       <div className={styles.btnBox}>
-        <Button name="메모 삭제" onClick={() => deleteMemo(selectedMemo)} />
+        <Button name="메모 삭제" onClick={() => openModal("deleteMemo")} />
+        <Button name="URL 변경" onClick={() => openModal("urlChange")} />
         <Button name="메인 화면" onClick={() => goToMain()} />
       </div>
     </div>

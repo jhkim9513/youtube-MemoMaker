@@ -17,8 +17,19 @@
   width: 100%;
 }
 
+.inputAndSelectBox {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+}
+
 .title {
-  height: 7%;
+  flex-basis: 90%;
+}
+
+.select {
+  flex: 1;
 }
 
 .content {
@@ -46,8 +57,11 @@
   .youtube {
     flex-basis: 51%;
   }
-  .title {
+  .inputAndSelectBox {
     height: 10%;
+  }
+  .title {
+    height: 100%;
   }
 
   .btnBox {

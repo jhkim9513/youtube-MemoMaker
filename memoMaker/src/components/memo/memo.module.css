@@ -90,7 +90,6 @@
 .content {
   font-size: 0.9em;
   width: 80%;
-  /* height: 1.2em; */
   white-space: pre-line;
   overflow: hidden;
   text-overflow: ellipsis;

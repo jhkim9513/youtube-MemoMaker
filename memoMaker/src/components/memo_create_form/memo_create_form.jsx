@@ -2,7 +2,7 @@ import React, { memo, useRef } from "react";
 import Button from "../button/button";
 import styles from "./memo_create_form.module.css";
 
-const MemoCreateForm = memo(({ createMemo }) => {
+const MemoCreateForm = memo(({ createMemo, convertToEmbeddedURL }) => {
   const formRef = useRef();
   const titleRef = useRef();
   const themeRef = useRef();
@@ -21,22 +21,10 @@ const MemoCreateForm = memo(({ createMemo }) => {
       theme: themeRef.current.value,
       url: convertToEmbeddedURL(urlRef.current.value) || "",
       content: contentRef.current.value || "",
+      thumbnail: convertToEmbeddedURL(urlRef.current.value, true) || "",
     };
     formRef.current.reset();
     createMemo(memo);
-  };
-
-  const convertToEmbeddedURL = (url) => {
-    const regExp =
-      /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-]{11}))|(?:youtu.be\/([a-zA-Z0-9-]{11})))/;
-    // 전달한 정규표현식에 맞게 배열로 반환해주는 match()
-    const match = url.match(regExp);
-
-    const youtubeURL = match ? match[1] || match[2] : undefined;
-    if (youtubeURL) {
-      return `https://www.youtube.com/embed/${youtubeURL}`;
-    }
-    return url;
   };
 
   return (

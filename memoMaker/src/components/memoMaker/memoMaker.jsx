@@ -5,6 +5,7 @@ import Footer from "../footer/footer";
 import Header from "../header/header";
 import MemoList from "../memoList/memoList";
 import MemoDetail from "../memo_detail/memo_detail";
+import Modal from "../modal/modal";
 import styles from "./memoMaker.module.css";
 
 const MemoMaker = ({ auth, memoRepository }) => {
@@ -12,6 +13,11 @@ const MemoMaker = ({ auth, memoRepository }) => {
   const historyState = history?.location?.state;
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [selectedMemo, setSelectedMemo] = useState(null);
+  const [isModal, setIsModal] = useState({
+    isOpen: false,
+    urlChange: false,
+    deleteMemo: false,
+  });
   const [memoList, setMemoList] = useState({
     // 1: {
     //   id: "1",
@@ -19,6 +25,7 @@ const MemoMaker = ({ auth, memoRepository }) => {
     //   title: "youtube title2",
     //   theme: "light",
     //   content: "blablabla~",
+    //   thumbnail: "https://img.youtube.com/vi/NqIJv3jklwU/mqdefault.jpg"
     // },
   });
 
@@ -84,6 +91,51 @@ const MemoMaker = ({ auth, memoRepository }) => {
     setSelectedMemo(null);
   };
 
+  const convertToEmbeddedURL = (url, isThumbnail = false) => {
+    const regExp =
+      /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-]{11}))|(?:youtu.be\/([a-zA-Z0-9-]{11})))/;
+    // 전달한 정규표현식에 맞게 배열로 반환해주는 match()
+    const match = url.match(regExp);
+
+    const videoId = match ? match[1] || match[2] : undefined;
+    if (isThumbnail && videoId) {
+      return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+    } else if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return url;
+  };
+
+  const changeURL = (url) => {
+    setSelectedMemo((selectedMemo) => {
+      const updated = selectedMemo;
+      updated.url = convertToEmbeddedURL(url);
+      updated.thumbnail = convertToEmbeddedURL(url, true);
+      updateMemo(updated);
+      return updated;
+    });
+  };
+
+  //
+  const openModal = (whatOpen) => {
+    switch (whatOpen) {
+      case "urlChange": {
+        setIsModal({ isOpen: true, urlChange: true, deleteMemo: false });
+        return;
+      }
+      case "deleteMemo": {
+        setIsModal({ isOpen: true, urlChange: false, deleteMemo: true });
+        return;
+      }
+      default:
+        throw new Error(`unknown whatOpen: ${whatOpen}`);
+    }
+  };
+  const closeModal = () => {
+    setIsModal({ isOpen: false, urlChange: false, deleteMemo: false });
+  };
+  //
+
   return (
     <section className={styles.memoMaker}>
       <Header onLogout={onLogout} />
@@ -93,8 +145,8 @@ const MemoMaker = ({ auth, memoRepository }) => {
             <MemoDetail
               selectedMemo={selectedMemo}
               updateMemo={updateMemo}
-              deleteMemo={deleteMemo}
               goToMain={goToMain}
+              openModal={openModal}
             />
           </div>
           <div className={styles.selectModeList}>
@@ -107,7 +159,10 @@ const MemoMaker = ({ auth, memoRepository }) => {
         </div>
       ) : (
         <div className={styles.container}>
-          <Creator createMemo={createMemo} />
+          <Creator
+            createMemo={createMemo}
+            convertToEmbeddedURL={convertToEmbeddedURL}
+          />
           <div className={styles.list}>
             <MemoList memoList={memoList} goToDetail={goToDetail} />
           </div>
@@ -115,6 +170,15 @@ const MemoMaker = ({ auth, memoRepository }) => {
       )}
 
       <Footer />
+
+      {/* 메모 삭제, url변경 모달창 */}
+      <Modal
+        isModal={isModal}
+        close={closeModal}
+        changeURL={changeURL}
+        selectedMemo={selectedMemo}
+        deleteMemo={deleteMemo}
+      ></Modal>
     </section>
   );
 };

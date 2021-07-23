@@ -5,7 +5,7 @@ const DEFAULT_IMAGE = "images/default_img.png";
 
 const Memo = memo(({ memo, goToDetail, selectedMemo }) => {
   const isDetail = selectedMemo ? styles.detailList : null;
-  const { url, title, theme, content } = memo;
+  const { url, title, theme, content, thumbnail } = memo;
   return (
     <li
       className={`${styles.memo} ${getTheme(theme)} ${isDetail}`}
@@ -13,17 +13,11 @@ const Memo = memo(({ memo, goToDetail, selectedMemo }) => {
     >
       <div className={`${styles.youtube} ${isDetail}`}>
         {url !== "" ? (
-          <iframe
-            // className={`${styles.youtube} ${isDetail}`}
-            title="youtube iframe"
-            id="ytplayer"
-            width="100%"
-            height="100%"
-            type="text/html"
-            src={url}
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
+          <img
+            className={`${styles.default_img} ${isDetail}`}
+            src={thumbnail}
+            alt="youtube thumbnail"
+          ></img>
         ) : (
           <img
             className={`${styles.default_img} ${isDetail}`}
