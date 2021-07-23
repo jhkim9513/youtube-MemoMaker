@@ -1,0 +1,56 @@
+.detailBox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.youtube {
+  flex-basis: 50%;
+}
+
+.memoBox {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  height: 7%;
+}
+
+.content {
+  resize: none;
+  overflow-y: auto;
+  height: 93%;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.btnBox {
+  display: flex;
+}
+
+@media screen and (max-width: 62rem) {
+  .detailBox {
+    height: 60vh;
+  }
+  .memoBox {
+    flex-basis: 45%;
+  }
+  .youtube {
+    flex-basis: 51%;
+  }
+  .title {
+    height: 10%;
+  }
+
+  .btnBox {
+    flex-basis: 4%;
+  }
+}

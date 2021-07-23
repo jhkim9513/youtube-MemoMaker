@@ -6,6 +6,7 @@
   padding: 0.5rem;
   background-color: headerAndFooter;
   position: relative;
+  flex-basis: 5%;
 }
 
 .title {

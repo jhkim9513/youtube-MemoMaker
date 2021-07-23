@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import Button from "../button/button";
 import styles from "./memo_detail.module.css";
 
-const MemoDetail = ({ selectedMemo, updateMemo, deleteMemo }) => {
+const MemoDetail = ({ selectedMemo, updateMemo, deleteMemo, goToMain }) => {
   const { title, url, content } = selectedMemo;
   const titleRef = useRef();
   const contentRef = useRef();
@@ -19,7 +19,7 @@ const MemoDetail = ({ selectedMemo, updateMemo, deleteMemo }) => {
   };
 
   return (
-    <div>
+    <div className={styles.detailBox}>
       {url && (
         <iframe
           className={styles.youtube}
@@ -49,7 +49,10 @@ const MemoDetail = ({ selectedMemo, updateMemo, deleteMemo }) => {
           onChange={onChange}
         ></textarea>
       </div>
-      <Button name="delete" onClick={() => deleteMemo(selectedMemo)} />
+      <div className={styles.btnBox}>
+        <Button name="메모 삭제" onClick={() => deleteMemo(selectedMemo)} />
+        <Button name="메인 화면" onClick={() => goToMain()} />
+      </div>
     </div>
   );
 };

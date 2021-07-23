@@ -80,6 +80,10 @@ const MemoMaker = ({ auth, memoRepository }) => {
     setSelectedMemo(memo);
   };
 
+  const goToMain = () => {
+    setSelectedMemo(null);
+  };
+
   return (
     <section className={styles.memoMaker}>
       <Header onLogout={onLogout} />
@@ -90,16 +94,23 @@ const MemoMaker = ({ auth, memoRepository }) => {
               selectedMemo={selectedMemo}
               updateMemo={updateMemo}
               deleteMemo={deleteMemo}
+              goToMain={goToMain}
             />
           </div>
-          <div className={styles.list}>
-            <MemoList memoList={memoList} goToDetail={goToDetail} />
+          <div className={styles.selectModeList}>
+            <MemoList
+              memoList={memoList}
+              goToDetail={goToDetail}
+              selectedMemo={selectedMemo}
+            />
           </div>
         </div>
       ) : (
         <div className={styles.container}>
           <Creator createMemo={createMemo} />
-          <MemoList memoList={memoList} goToDetail={goToDetail} />
+          <div className={styles.list}>
+            <MemoList memoList={memoList} goToDetail={goToDetail} />
+          </div>
         </div>
       )}
 

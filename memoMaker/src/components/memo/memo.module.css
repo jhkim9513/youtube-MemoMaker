@@ -2,13 +2,14 @@
 
 .memo {
   display: flex;
-  width: 80%;
+  width: 100%;
   align-items: center;
-  margin-bottom: 0.5em;
+  justify-content: center;
+  margin: 0.5em;
   border-radius: 1em;
-  background-color: bisque;
   box-shadow: listShadow;
-  max-width: 70rem;
+  height: 20%;
+  cursor: pointer;
 }
 
 .memo.dark {
@@ -21,22 +22,36 @@
   color: listBlack;
 }
 
+.memo.detailList {
+  width: 90%;
+  height: 8em;
+  padding: 0;
+}
+
 .default_img {
-  width: 20em;
-  height: 10em;
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+}
+
+.youtube {
+  width: 15em;
+  height: 8em;
   padding: 0.7em;
   margin-left: 0.5em;
   margin-right: 1em;
   border-radius: 10%;
 }
 
-.youtube {
-  width: 15em;
-  height: 10em;
-  padding: 0.7em;
-  margin-left: 0.5em;
-  margin-right: 1em;
+.youtube.detailList {
+  width: 50%;
+  height: 5em;
+  padding: 0.3em;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
   border-radius: 10%;
+  white-space: pre-wrap;
+  overflow-y: hidden;
 }
 
 .title,
@@ -45,24 +60,55 @@
   margin-bottom: 0.3em;
 }
 
-.title {
-  font-size: 1.7rem;
+.title.detailList {
+  font-size: 1.3em;
+  height: 1.5em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
 }
 
-.title::after {
+.title {
+  font-size: 1.3em;
+  height: 1.5em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 80%;
+}
+
+.content::before {
   content: "";
   display: block;
-  width: 90%;
+  width: 100%;
   height: 2px;
   background-color: afterColor;
-  transform: translateY(0.15em);
+  transform: translateY(0.1em);
 }
 
 .content {
-  font-size: 0.8rem;
+  font-size: 0.9em;
+  width: 80%;
+  /* height: 1.2em; */
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .memoBox {
   width: 100%;
-  height: 100%;
+  height: 90%;
+  max-height: 10em;
   padding: 0.5em;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.memoBox.detailList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 100%;
 }

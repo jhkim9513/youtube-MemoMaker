@@ -4,8 +4,10 @@
   width: 100%;
   text-align: center;
   padding: 0.5rem;
+  margin: 0;
   background-color: headerAndFooter;
   position: relative;
+  flex-basis: 5%;
 }
 
 .title {

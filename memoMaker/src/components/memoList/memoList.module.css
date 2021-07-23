@@ -1,28 +1,57 @@
 @value makerTitle, memoListBack from '../../common/colors.css';
 
 .memoList {
-  flex-basis: 80%;
-  background-color: memoListBack;
-  overflow-y: auto;
-}
-
-.listbox {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: memoListBack;
+  height: 100%;
+  width: 100%;
+  list-style: none;
+}
+
+.memoList.detailList {
+  width: 30rem;
+  height: 100%;
 }
 
 .title {
   width: 100%;
+  height: 100%;
   text-align: center;
   margin-bottom: 1em;
   color: makerTitle;
+  margin: 0;
+  flex-basis: 5%;
+}
+
+.listbox {
+  width: 80%;
+  height: 100%;
+  display: inline-block;
+  padding: 1em;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.listbox::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 
 @media screen and (max-width: 62rem) {
   .memoList {
     flex-basis: 100%;
+    height: 100%;
+  }
+  .memoList.detailList {
+    width: 100%;
+    height: 31vh;
+  }
+  .listbox {
+    height: 100%;
   }
 }
