@@ -3,10 +3,10 @@ import { useHistory } from "react-router-dom";
 import Creator from "../creator/creator";
 import Footer from "../footer/footer";
 import Header from "../header/header";
-import MemoList from "../memoList/memoList";
+import MemoList from "../memo_list/memo_list";
 import MemoDetail from "../memo_detail/memo_detail";
 import Modal from "../modal/modal";
-import styles from "./memoMaker.module.css";
+import styles from "./memo_maker.module.css";
 
 const MemoMaker = ({ auth, memoRepository }) => {
   const history = useHistory();
@@ -33,6 +33,10 @@ const MemoMaker = ({ auth, memoRepository }) => {
   const onLogout = useCallback(() => {
     auth.logout();
   }, [auth]);
+
+  const goToYoutube = useCallback(() => {
+    history.push("/searchYoutube");
+  }, [history]);
 
   useEffect(() => {
     if (!userId) return;
@@ -138,7 +142,7 @@ const MemoMaker = ({ auth, memoRepository }) => {
 
   return (
     <section className={styles.memoMaker}>
-      <Header onLogout={onLogout} />
+      <Header onLogout={onLogout} goToYoutube={goToYoutube} />
       {selectedMemo !== null ? (
         <div className={styles.selectedScreen}>
           <div className={styles.detail}>

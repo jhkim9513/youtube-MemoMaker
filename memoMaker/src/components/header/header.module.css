@@ -14,7 +14,9 @@
   color: white;
 }
 
-.logout {
+.logout,
+.searchButton,
+.memoButton {
   position: absolute;
   right: 3em;
   top: 1em;
@@ -24,4 +26,16 @@
   color: white;
   outline: 0;
   cursor: pointer;
+}
+
+.logout {
+  right: 3em;
+}
+
+.searchButton {
+  right: 8em;
+}
+
+.memoButton {
+  right: 13em;
 }

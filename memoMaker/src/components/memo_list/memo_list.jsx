@@ -1,6 +1,6 @@
 import React from "react";
 import Memo from "../memo/memo";
-import styles from "./memoList.module.css";
+import styles from "./memo_list.module.css";
 
 const MemoList = ({ memoList, goToDetail, selectedMemo }) => {
   const isDetail = selectedMemo ? styles.detailList : null;
