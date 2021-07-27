@@ -1,5 +1,9 @@
 .detail {
   padding: 0.2em;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 90rem;
 }
 
 .pre {

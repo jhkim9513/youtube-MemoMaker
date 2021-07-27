@@ -13,6 +13,7 @@ const MemoMaker = ({ auth, memoRepository }) => {
   const historyState = history?.location?.state;
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [selectedMemo, setSelectedMemo] = useState(null);
+  // const memoVideo = history?.location?.state?.video;
   const [isModal, setIsModal] = useState({
     isOpen: false,
     urlChange: false,
@@ -33,10 +34,6 @@ const MemoMaker = ({ auth, memoRepository }) => {
   const onLogout = useCallback(() => {
     auth.logout();
   }, [auth]);
-
-  const goToYoutube = useCallback(() => {
-    history.push("/searchYoutube");
-  }, [history]);
 
   useEffect(() => {
     if (!userId) return;
@@ -95,6 +92,10 @@ const MemoMaker = ({ auth, memoRepository }) => {
     setSelectedMemo(null);
   };
 
+  const goToYoutube = useCallback(() => {
+    history.push("/searchYoutube");
+  }, [history]);
+
   const convertToEmbeddedURL = (url, isThumbnail = false) => {
     const regExp =
       /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-]{11}))|(?:youtu.be\/([a-zA-Z0-9-]{11})))/;
@@ -120,7 +121,6 @@ const MemoMaker = ({ auth, memoRepository }) => {
     });
   };
 
-  //
   const openModal = (whatOpen) => {
     switch (whatOpen) {
       case "urlChange": {
@@ -138,7 +138,6 @@ const MemoMaker = ({ auth, memoRepository }) => {
   const closeModal = () => {
     setIsModal({ isOpen: false, urlChange: false, deleteMemo: false });
   };
-  //
 
   return (
     <section className={styles.memoMaker}>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Footer from "../../footer/footer";
 import Header from "../../header/header";
@@ -9,14 +9,15 @@ import styles from "./youtube_main.module.css";
 
 const YoutubeMain = ({ auth, youtube }) => {
   const history = useHistory();
+  const listRef = useRef();
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   useEffect(() => {
     youtube
       .mostPopular() //
-      .then((videos) => setVideos(videos));
-    console.log(videos);
+      .then((videos) => setVideos(videos))
+      .then(console.log(videos));
   }, [youtube]);
 
   const onLogout = useCallback(() => {
@@ -43,19 +44,20 @@ const YoutubeMain = ({ auth, youtube }) => {
 
   const selectVideo = (video) => {
     setSelectedVideo(video);
+    listRef.current.scrollIntoView({ behavior: "auto" });
   };
 
   return (
-    <section className={styles.youtubeList}>
+    <section className={styles.youtubeMain}>
       <Header onLogout={onLogout} goToMemoMaker={goToMemoMaker} />
+      <YoutubeSearch onSearch={search} />
       <div className={styles.container}>
-        <YoutubeSearch onSearch={search} />
         {selectedVideo && (
           <div className={styles.detail}>
             <YoutubeDetail video={selectedVideo} />
           </div>
         )}
-        <div className={styles.list}>
+        <div className={styles.list} ref={listRef}>
           <YoutubeList
             videos={videos}
             onVideoClick={selectVideo}
