@@ -2,7 +2,7 @@ import Login from "./components/login/login";
 import styles from "./app.module.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import MemoMaker from "./components/memo_maker/memo_maker";
-import YoutubeList from "./components/youtube/youtube_list/youtube_list";
+import YoutubeMain from "./components/youtube/youtube_main/youtube_main";
 
 function App({ auth, memoRepository, youtube }) {
   return (
@@ -16,7 +16,7 @@ function App({ auth, memoRepository, youtube }) {
             <MemoMaker auth={auth} memoRepository={memoRepository} />
           </Route>
           <Route exact path="/searchYoutube">
-            <YoutubeList auth={auth} youtube={youtube} />
+            <YoutubeMain auth={auth} youtube={youtube} />
           </Route>
         </Switch>
       </BrowserRouter>
