@@ -7,35 +7,55 @@
   background-color: headerAndFooter;
   position: relative;
   flex-basis: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40em;
+  height: 100%;
+  margin-right: 5.5em;
+}
+
+.youtubeButton,
+.memoMakerButton {
+  flex-basis: 50%;
+}
+
+.logout {
+  flex-basis: 20%;
 }
 
 .title {
   margin: 0;
+  margin-left: 5em;
   color: white;
+  text-align: center;
 }
 
-.logout,
-.searchButton,
-.memoButton {
-  position: absolute;
-  right: 3em;
-  top: 1em;
-  padding: 0.1em;
-  border-radius: 20%;
-  background-color: black;
-  color: white;
-  outline: 0;
-  cursor: pointer;
-}
+@media screen and (max-width: 62rem) {
+  .header {
+    justify-content: space-between;
+    border: 1px solid green;
+  }
+  .title {
+    margin: 0;
+  }
+  .buttonBox {
+    margin: 0;
+    width: 20em;
+    justify-content: space-evenly;
+  }
 
-.logout {
-  right: 3em;
-}
-
-.searchButton {
-  right: 8em;
-}
-
-.memoButton {
-  right: 13em;
+  .youtubeButton,
+  .memoMakerButton {
+    flex-basis: 50%;
+  }
+  .logout {
+    flex-basis: 30%;
+  }
 }

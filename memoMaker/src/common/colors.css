@@ -3,16 +3,19 @@
 
 /* memoMaker */
 @value makerTitle: rgb(215, 234, 255);
+@value makerBack: rgb(230, 230, 230);
 
 /* creator */
-@value creatorBack: #475353;
+@value creatorBack: rgb(217, 217, 217);
+@value creatorTitle: rgb(64, 64, 64);
 
 /* memoCreateForm */
 @value createFormBorder: black;
 @value createFormBack: white;
 
 /* memoList */
-@value memoListBack: rgb(90, 86, 79);
+@value memoListBack: rgb(204, 204, 204);
+@value memoListTitle: rgb(64, 64, 64);
 @value listShadow: rgba(217, 217, 217, 1);
 @value listBlack: black;
 @value listWhite: white;

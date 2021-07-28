@@ -1,4 +1,4 @@
-@value makerTitle, creatorBack from '../../common/colors.css';
+@value creatorTitle, creatorBack from '../../common/colors.css';
 
 .creator {
   display: flex;
@@ -15,5 +15,5 @@
   height: 10%;
   text-align: center;
   margin-bottom: 1em;
-  color: makerTitle;
+  color: creatorTitle;
 }
