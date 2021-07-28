@@ -9,12 +9,12 @@ const Header = memo(({ onLogout, goToYoutube, goToMemoMaker }) => (
       </button>
     )}
     {true && (
-      <button className={styles.searchButton} onClick={goToYoutube}>
+      <button className={styles.searchButton} onClick={() => goToYoutube()}>
         search
       </button>
     )}
     {true && (
-      <button className={styles.memoButton} onClick={goToMemoMaker}>
+      <button className={styles.memoButton} onClick={() => goToMemoMaker()}>
         Memo
       </button>
     )}

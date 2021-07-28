@@ -7,7 +7,7 @@ import YoutubeList from "../youtube_list/youtube_list";
 import YoutubeSearch from "../youtube_search/youtube_search";
 import styles from "./youtube_main.module.css";
 
-const YoutubeMain = ({ auth, youtube }) => {
+const YoutubeMain = ({ auth, youtube, createMemo, setSelectedMemo }) => {
   const history = useHistory();
   const listRef = useRef();
   const [videos, setVideos] = useState([]);
@@ -24,9 +24,13 @@ const YoutubeMain = ({ auth, youtube }) => {
     auth.logout();
   }, [auth]);
 
-  const goToMemoMaker = useCallback(() => {
-    history.push("/memoMaker");
-  }, [history]);
+  const goToMemoMaker = useCallback(
+    (memo = null) => {
+      history.push("/memoMaker");
+      setSelectedMemo(memo);
+    },
+    [history, setSelectedMemo]
+  );
 
   const search = useCallback(
     (query) => {
@@ -54,7 +58,11 @@ const YoutubeMain = ({ auth, youtube }) => {
       <div className={styles.container}>
         {selectedVideo && (
           <div className={styles.detail}>
-            <YoutubeDetail video={selectedVideo} />
+            <YoutubeDetail
+              video={selectedVideo}
+              createMemo={createMemo}
+              goToMemoMaker={goToMemoMaker}
+            />
           </div>
         )}
         <div className={styles.list} ref={listRef}>

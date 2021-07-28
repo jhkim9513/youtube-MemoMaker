@@ -3,7 +3,7 @@ import Button from "../button/button";
 import styles from "./memo_detail.module.css";
 
 const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
-  const { title, url, content } = selectedMemo;
+  const { title, url, content, theme } = selectedMemo;
   const titleRef = useRef();
   const contentRef = useRef();
   const themeRef = useRef();
@@ -48,6 +48,7 @@ const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
             className={styles.select}
             name="theme"
             onChange={onChange}
+            value={theme}
           >
             <option value="light">light</option>
             <option value="dark">dark</option>

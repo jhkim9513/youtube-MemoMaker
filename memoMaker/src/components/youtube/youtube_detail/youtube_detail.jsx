@@ -1,10 +1,22 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import Button from "../../button/button";
 import styles from "./youtube_detail.module.css";
 
-const YoutubeDetail = ({ video, video: { snippet } }) => {
-  const history = useHistory();
+const YoutubeDetail = ({
+  video,
+  video: { snippet, id },
+  createMemo,
+  goToMemoMaker,
+}) => {
+  const { title, description } = snippet;
+  const memo = {
+    id: id,
+    url: `https://www.youtube.com/embed/${id}`,
+    title: title,
+    theme: "light",
+    content: description,
+    thumbnail: `https://img.youtube.com/vi/${id}/mqdefault.jpg`,
+  };
   return (
     <section className={styles.detail}>
       <iframe
@@ -17,7 +29,13 @@ const YoutubeDetail = ({ video, video: { snippet } }) => {
         frameBorder="0"
         allowFullScreen
       ></iframe>
-      <Button name="메모하기" onClick={() => {}} />
+      <Button
+        name="메모하기"
+        onClick={() => {
+          createMemo(memo);
+          goToMemoMaker(memo);
+        }}
+      />
       <h2>{snippet.title}</h2>
       <h3>{snippet.channelTitle}</h3>
       <pre className={styles.pre}>{snippet.description}</pre>
