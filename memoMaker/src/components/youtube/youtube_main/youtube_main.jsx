@@ -9,6 +9,7 @@ import styles from "./youtube_main.module.css";
 
 const YoutubeMain = ({ auth, youtube, createMemo, setSelectedMemo }) => {
   const history = useHistory();
+  const detailRef = useRef();
   const listRef = useRef();
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -42,13 +43,16 @@ const YoutubeMain = ({ auth, youtube, createMemo, setSelectedMemo }) => {
         });
 
       setSelectedVideo(null);
+      listRef?.current?.scrollIntoView({ behavior: "auto" });
     },
     [youtube]
   );
 
   const selectVideo = (video) => {
     setSelectedVideo(video);
-    listRef.current.scrollIntoView({ behavior: "auto" });
+    detailRef.current
+      ? detailRef?.current?.scrollIntoView({ behavior: "auto" })
+      : listRef?.current?.scrollIntoView({ behavior: "auto" });
   };
 
   return (
@@ -57,7 +61,7 @@ const YoutubeMain = ({ auth, youtube, createMemo, setSelectedMemo }) => {
       <YoutubeSearch onSearch={search} />
       <div className={styles.container}>
         {selectedVideo && (
-          <div className={styles.detail}>
+          <div className={styles.detail} ref={detailRef}>
             <YoutubeDetail
               video={selectedVideo}
               createMemo={createMemo}
@@ -65,7 +69,10 @@ const YoutubeMain = ({ auth, youtube, createMemo, setSelectedMemo }) => {
             />
           </div>
         )}
-        <div className={styles.list} ref={listRef}>
+        <div
+          className={selectedVideo ? styles.list : styles.selectList}
+          ref={listRef}
+        >
           <YoutubeList
             videos={videos}
             onVideoClick={selectVideo}

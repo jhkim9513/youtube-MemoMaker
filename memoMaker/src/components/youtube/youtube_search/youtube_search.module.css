@@ -30,3 +30,28 @@
   padding: 0.4em 0.2em;
   height: 100%;
 }
+
+@media screen and (max-width: 62rem) {
+  .logo {
+    flex-basis: 10%;
+  }
+  .img {
+    flex: 1;
+  }
+  .title {
+    display: none;
+  }
+
+  .input {
+    flex-basis: 70%;
+    font-size: 1rem;
+    outline: 0;
+    height: 99%;
+  }
+
+  .button {
+    background-color: darkgrey;
+    outline: 0;
+    cursor: pointer;
+  }
+}

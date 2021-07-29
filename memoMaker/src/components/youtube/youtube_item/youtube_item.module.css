@@ -43,3 +43,25 @@
 .channel {
   font-size: 0.6rem;
 }
+
+@media screen and (max-width: 62rem) {
+  .thumbnail {
+    width: 35%;
+  }
+
+  .metadata {
+    width: 65%;
+  }
+  .title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .channel {
+    display: none;
+  }
+
+  .container.grid {
+    width: 100vw;
+  }
+}

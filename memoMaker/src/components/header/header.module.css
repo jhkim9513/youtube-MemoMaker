@@ -1,6 +1,7 @@
 @value headerAndFooter from '../../common/colors.css';
 
-.header {
+.header,
+.loginHeader {
   width: 100%;
   text-align: center;
   padding: 0.5rem;
@@ -12,6 +13,10 @@
   align-items: center;
 }
 
+.loginHeader {
+  justify-content: center;
+}
+
 .buttonBox {
   display: flex;
   align-items: center;
@@ -19,6 +24,10 @@
   width: 40em;
   height: 100%;
   margin-right: 5.5em;
+}
+
+.buttonBoxMobile {
+  display: none;
 }
 
 .youtubeButton,
@@ -30,32 +39,39 @@
   flex-basis: 20%;
 }
 
-.title {
+.title,
+.loginTitle {
   margin: 0;
-  margin-left: 5em;
   color: white;
   text-align: center;
 }
 
+.title {
+  margin-left: 5em;
+}
+
 @media screen and (max-width: 62rem) {
-  .header {
-    justify-content: space-between;
-    border: 1px solid green;
-  }
   .title {
     margin: 0;
+    font-size: 1em;
   }
   .buttonBox {
+    display: none;
+  }
+
+  .buttonBoxMobile {
+    display: flex;
     margin: 0;
-    width: 20em;
+    width: 10em;
     justify-content: space-evenly;
+    font-size: 1em;
   }
 
   .youtubeButton,
   .memoMakerButton {
-    flex-basis: 50%;
+    flex-basis: 40%;
   }
   .logout {
-    flex-basis: 30%;
+    flex-basis: 20%;
   }
 }

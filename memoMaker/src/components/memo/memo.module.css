@@ -111,3 +111,22 @@
   padding: 0;
   width: 100%;
 }
+
+@media screen and (max-width: 62rem) {
+  .youtube {
+    width: 70%;
+    height: 100%;
+    padding: 0.5em;
+    margin: 0 0.5em;
+    border-radius: 8%;
+  }
+
+  .title {
+    font-size: 1em;
+    height: 1.5em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 90%;
+  }
+}

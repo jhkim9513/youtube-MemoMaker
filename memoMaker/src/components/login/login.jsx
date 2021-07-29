@@ -40,9 +40,9 @@ const Login = ({ auth }) => {
             Github
           </button>
         </li>
-        <li className={styles.listItem}>
+        {/* <li className={styles.listItem}>
           <button className={styles.button}>Non-member login</button>
-        </li>
+        </li> */}
       </ul>
       <Footer />
     </section>

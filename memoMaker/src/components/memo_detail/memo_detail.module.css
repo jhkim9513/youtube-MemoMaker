@@ -49,22 +49,22 @@
 
 @media screen and (max-width: 62rem) {
   .detailBox {
-    height: 60vh;
+    height: 100%;
   }
   .memoBox {
-    flex-basis: 45%;
+    flex-basis: 50%;
   }
   .youtube {
-    flex-basis: 51%;
+    flex-basis: 45%;
   }
   .inputAndSelectBox {
-    height: 10%;
+    height: 100%;
   }
   .title {
     height: 100%;
   }
 
   .btnBox {
-    flex-basis: 4%;
+    flex-basis: 5%;
   }
 }

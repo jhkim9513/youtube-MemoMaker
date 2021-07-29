@@ -21,3 +21,19 @@
 .container::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }
+
+.detail {
+  width: 70vw;
+}
+.list {
+  width: 30vw;
+}
+.selectList {
+  width: 100vw;
+}
+
+@media screen and (max-width: 62rem) {
+  .container {
+    flex-direction: column;
+  }
+}

@@ -6,6 +6,7 @@ import Auth from "./firebase/auth";
 import App from "./app";
 import MemoRepository from "./firebase/memo_repository";
 import Youtube from "./components/youtube/service/youtube";
+import "@fortawesome/fontawesome-free/js/all.js";
 
 const auth = new Auth();
 const memoRepository = new MemoRepository();

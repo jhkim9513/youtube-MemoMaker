@@ -17,3 +17,9 @@
   margin-bottom: 1em;
   color: creatorTitle;
 }
+
+@media screen and (max-width: 62rem) {
+  .creator {
+    height: 40%;
+  }
+}
