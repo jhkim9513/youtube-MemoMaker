@@ -10,15 +10,20 @@ function App({ auth, memoRepository, youtube }) {
   const historyState = history?.location?.state;
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [selectedMemo, setSelectedMemo] = useState(null);
-  // const memoVideo = history?.location?.state?.video;
+  const [isModal, setIsModal] = useState({
+    isOpen: false,
+    urlChange: false,
+    deleteMemo: false,
+    invalidUrl: false,
+  });
   const [memoList, setMemoList] = useState({
     // 1: {
     //   id: "1",
-    //   url: "https://www.youtube.com/embed/NqIJv3jklwU",
-    //   title: "youtube title2",
+    //   url: "https://www.youtube.com/embed/videoID",
+    //   title: "youtube title",
     //   theme: "light",
     //   content: "blablabla~",
-    //   thumbnail: "https://img.youtube.com/vi/NqIJv3jklwU/mqdefault.jpg"
+    //   thumbnail: "https://img.youtube.com/vi/videoID/mqdefault.jpg"
     // },
   });
 
@@ -75,13 +80,68 @@ function App({ auth, memoRepository, youtube }) {
   };
 
   const changeURL = (url) => {
-    setSelectedMemo((selectedMemo) => {
-      const updated = selectedMemo;
-      updated.url = convertToEmbeddedURL(url);
-      updated.thumbnail = convertToEmbeddedURL(url, true);
-      updateMemo(updated);
-      return updated;
-    });
+    const validUrl = validateURL(url);
+    if (validUrl === "" || validUrl) {
+      setSelectedMemo((selectedMemo) => {
+        const updated = selectedMemo;
+        updated.url = convertToEmbeddedURL(url);
+        updated.thumbnail = convertToEmbeddedURL(url, true);
+        updateMemo(updated);
+        return updated;
+      });
+    } else {
+      openModal("invalidUrl");
+    }
+  };
+
+  const validateURL = (url) => {
+    if (url === "") {
+      return url;
+    } else {
+      const regExp =
+        /(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9-]+)(\?[a-zA-Z0-9-=]+)?/;
+      // 전달한 정규표현식에 맞게 배열로 반환해주는 match()
+      const match = url.match(regExp);
+      const validateUrl = match ? match[0] : undefined;
+      return validateUrl;
+    }
+  };
+
+  const openModal = (whatOpen) => {
+    switch (whatOpen) {
+      case "urlChange": {
+        setIsModal({
+          isOpen: true,
+          urlChange: true,
+          deleteMemo: false,
+          invalidUrl: false,
+        });
+        return;
+      }
+      case "deleteMemo": {
+        setIsModal({
+          isOpen: true,
+          urlChange: false,
+          deleteMemo: true,
+          invalidUrl: false,
+        });
+        return;
+      }
+      case "invalidUrl": {
+        setIsModal({
+          isOpen: true,
+          urlChange: false,
+          deleteMemo: false,
+          invalidUrl: true,
+        });
+        return;
+      }
+      default:
+        throw new Error(`unknown whatOpen: ${whatOpen}`);
+    }
+  };
+  const closeModal = () => {
+    setIsModal({ isOpen: false, urlChange: false, deleteMemo: false });
   };
 
   return (
@@ -98,7 +158,6 @@ function App({ auth, memoRepository, youtube }) {
               createMemo={createMemo}
               userId={userId}
               goToMain={goToMain}
-              changeURL={changeURL}
               goToDetail={goToDetail}
               selectedMemo={selectedMemo}
               updateMemo={updateMemo}
@@ -107,6 +166,11 @@ function App({ auth, memoRepository, youtube }) {
               convertToEmbeddedURL={convertToEmbeddedURL}
               deleteMemo={deleteMemo}
               setUserId={setUserId}
+              changeURL={changeURL}
+              validateURL={validateURL}
+              isModal={isModal}
+              openModal={openModal}
+              closeModal={closeModal}
             />
           </Route>
           <Route exact path="/searchYoutube">

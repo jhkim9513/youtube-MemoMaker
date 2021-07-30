@@ -29,8 +29,8 @@ const Modal = (props) => {
               <Button
                 name="등록"
                 onClick={() => {
-                  changeURL(urlRef.current.value);
                   close();
+                  changeURL(urlRef.current.value);
                 }}
               />
             </div>
@@ -54,6 +54,18 @@ const Modal = (props) => {
                 }}
               />
             </div>
+          </main>
+
+          <footer className={styles.modalFooter}>
+            <Button name="close" onClick={close} />
+          </footer>
+        </section>
+      ) : null}
+
+      {isModal.invalidUrl ? (
+        <section className={styles.modalSection}>
+          <main className={styles.main}>
+            <h1>유효하지 않은 youtube url입니다.</h1>
           </main>
 
           <footer className={styles.modalFooter}>

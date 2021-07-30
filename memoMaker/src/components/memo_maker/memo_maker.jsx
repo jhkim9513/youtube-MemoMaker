@@ -23,12 +23,11 @@ const MemoMaker = ({
   setUserId,
   userId,
   setMemoList,
+  validateURL,
+  isModal,
+  openModal,
+  closeModal,
 }) => {
-  const [isModal, setIsModal] = useState({
-    isOpen: false,
-    urlChange: false,
-    deleteMemo: false,
-  });
   const history = useHistory();
 
   // 캐시로 등록하여 onLogout이 호출 될 때마다 재생성되는것을 방지
@@ -60,24 +59,6 @@ const MemoMaker = ({
     history.push("/searchYoutube");
   }, [history]);
 
-  const openModal = (whatOpen) => {
-    switch (whatOpen) {
-      case "urlChange": {
-        setIsModal({ isOpen: true, urlChange: true, deleteMemo: false });
-        return;
-      }
-      case "deleteMemo": {
-        setIsModal({ isOpen: true, urlChange: false, deleteMemo: true });
-        return;
-      }
-      default:
-        throw new Error(`unknown whatOpen: ${whatOpen}`);
-    }
-  };
-  const closeModal = () => {
-    setIsModal({ isOpen: false, urlChange: false, deleteMemo: false });
-  };
-
   return (
     <section className={styles.memoMaker}>
       <Header onLogout={onLogout} goToYoutube={goToYoutube} />
@@ -104,6 +85,8 @@ const MemoMaker = ({
           <Creator
             createMemo={createMemo}
             convertToEmbeddedURL={convertToEmbeddedURL}
+            openModal={openModal}
+            validateURL={validateURL}
           />
           <div className={styles.list}>
             <MemoList memoList={memoList} goToDetail={goToDetail} />
