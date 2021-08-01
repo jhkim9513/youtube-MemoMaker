@@ -13,7 +13,7 @@ class Youtube {
       params: {
         part: "snippet",
         chart: "mostPopular",
-        maxResults: 100,
+        maxResults: 300,
       },
     });
     return response.data.items;
@@ -23,7 +23,7 @@ class Youtube {
     const response = await this.youtube.get("search", {
       params: {
         part: "snippet",
-        maxResults: 100,
+        maxResults: 300,
         type: "video",
         q: query,
       },

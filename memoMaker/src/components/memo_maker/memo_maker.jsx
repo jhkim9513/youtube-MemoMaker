@@ -29,6 +29,7 @@ const MemoMaker = ({
   closeModal,
 }) => {
   const history = useHistory();
+  const [loading, setLoading] = useState(true);
 
   // 캐시로 등록하여 onLogout이 호출 될 때마다 재생성되는것을 방지
   const onLogout = useCallback(() => {
@@ -38,9 +39,12 @@ const MemoMaker = ({
   useEffect(() => {
     if (!userId) return;
 
+    setLoading(true);
     const stopSync = memoRepository.syncMemo(userId, (memoList) => {
       setMemoList(memoList);
+      setLoading(false);
     });
+
     // unmount할 때 firebase통신을 꺼준다
     return () => stopSync();
   }, [memoRepository, setMemoList, userId]);
@@ -59,6 +63,7 @@ const MemoMaker = ({
     history.push("/searchYoutube");
   }, [history]);
 
+  const listClass = loading ? styles.listLoading : styles.list;
   return (
     <section className={styles.memoMaker}>
       <Header onLogout={onLogout} goToYoutube={goToYoutube} />
@@ -88,8 +93,12 @@ const MemoMaker = ({
             openModal={openModal}
             validateURL={validateURL}
           />
-          <div className={styles.list}>
-            <MemoList memoList={memoList} goToDetail={goToDetail} />
+
+          <div className={listClass}>
+            {!loading && (
+              <MemoList memoList={memoList} goToDetail={goToDetail} />
+            )}
+            {loading && <div className={styles.loading}></div>}
           </div>
         </div>
       )}

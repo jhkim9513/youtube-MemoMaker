@@ -13,12 +13,17 @@ const YoutubeMain = ({ auth, youtube, createMemo, setSelectedMemo }) => {
   const listRef = useRef();
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     youtube
       .mostPopular() //
       .then((videos) => setVideos(videos))
-      .then(console.log(videos));
+      .then((videos) => {
+        setLoading(false);
+        console.log(videos);
+      });
   }, [youtube]);
 
   const onLogout = useCallback(() => {
@@ -55,11 +60,12 @@ const YoutubeMain = ({ auth, youtube, createMemo, setSelectedMemo }) => {
       : listRef?.current?.scrollIntoView({ behavior: "auto" });
   };
 
+  const containerClass = loading ? styles.containerLoading : styles.container;
   return (
     <section className={styles.youtubeMain}>
       <Header onLogout={onLogout} goToMemoMaker={goToMemoMaker} />
       <YoutubeSearch onSearch={search} />
-      <div className={styles.container}>
+      <div className={containerClass}>
         {selectedVideo && (
           <div className={styles.detail} ref={detailRef}>
             <YoutubeDetail
@@ -69,16 +75,19 @@ const YoutubeMain = ({ auth, youtube, createMemo, setSelectedMemo }) => {
             />
           </div>
         )}
-        <div
-          className={selectedVideo ? styles.list : styles.selectList}
-          ref={listRef}
-        >
-          <YoutubeList
-            videos={videos}
-            onVideoClick={selectVideo}
-            display={selectedVideo ? "list" : "grid"}
-          />
-        </div>
+        {!loading && (
+          <div
+            className={selectedVideo ? styles.list : styles.selectList}
+            ref={listRef}
+          >
+            <YoutubeList
+              videos={videos}
+              onVideoClick={selectVideo}
+              display={selectedVideo ? "list" : "grid"}
+            />
+          </div>
+        )}
+        {loading && <div className={styles.loading}></div>}
       </div>
       <Footer />
     </section>

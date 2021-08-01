@@ -38,9 +38,24 @@
   flex-basis: 30%;
 }
 
-.list {
+.list,
+.listLoading {
   display: flex;
   height: 70%;
+}
+
+.listLoading {
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  width: 10em;
+  height: 10em;
+  border-radius: 50%;
+  border: 2px solid wheat;
+  border-top: 2px solid black;
+  animation: spin 2s linear infinite;
 }
 
 @media screen and (max-width: 62rem) {
@@ -61,5 +76,18 @@
     height: 100%;
     max-height: 50vh;
     display: none;
+  }
+  .loading {
+    width: 5em;
+    height: 5em;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

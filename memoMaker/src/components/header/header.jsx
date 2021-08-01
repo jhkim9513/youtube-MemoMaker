@@ -27,12 +27,14 @@ const Header = memo(({ onLogout, goToYoutube, goToMemoMaker }) => {
           )}
         </div>
       )}
+
+      {/* Mobile */}
       {onLogout && (
         <div className={styles.buttonBoxMobile}>
           {goToYoutube && (
             <div className={styles.youtubeButton}>
               <Button
-                name={<i class="fas fa-search"></i>}
+                name={<i className="fas fa-search"></i>}
                 onClick={() => goToYoutube()}
               />
             </div>
@@ -40,7 +42,7 @@ const Header = memo(({ onLogout, goToYoutube, goToMemoMaker }) => {
           {goToMemoMaker && (
             <div className={styles.memoMakerButton}>
               <Button
-                name={<i class="fas fa-home"></i>}
+                name={<i className="fas fa-home"></i>}
                 onClick={() => goToMemoMaker()}
               />
             </div>
@@ -57,16 +59,3 @@ const Header = memo(({ onLogout, goToYoutube, goToMemoMaker }) => {
 });
 
 export default Header;
-
-/*
-<button className={styles.logout} onClick={onLogout}>
-  Logout
-</button>
-
-<button className={styles.searchButton} onClick={() => goToYoutube()}>
-  search
-</button>
-<button className={styles.memoButton} onClick={() => goToMemoMaker()}>
-  Memo
-</button>
-*/
