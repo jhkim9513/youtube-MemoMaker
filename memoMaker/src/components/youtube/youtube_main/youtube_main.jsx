@@ -24,6 +24,7 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
   useEffect(() => {
     setLoading(true);
     setIsSearch(false);
+    setNowQuery("");
 
     youtube
       .mostPopular() //
@@ -44,6 +45,7 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
     if (loadInView) {
       if (!isSearch) {
         console.log("popular");
+        console.log("nextPageToken : ", nextPageToken);
         youtube
           .morePopular(nextPageToken) //
           .then((data) => {
@@ -51,7 +53,8 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
             setVideos((prev) => [...prev, ...data.items]);
           });
       } else if (isSearch) {
-        console.log("searching");
+        console.log("searching nowQuery : ", nowQuery);
+        console.log("nextPageToken : ", nextPageToken);
         youtube
           .moreSearch(nowQuery, nextPageToken) //
           .then((data) => {
@@ -80,10 +83,10 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
   const search = useCallback(
     (query) => {
       setLoading(true);
+      setIsSearch(true);
       youtube
         .search(query) //
         .then((data) => {
-          setIsSearch(true);
           setNowQuery(query);
           setNextPageToken(data.nextPageToken);
           return data.items;
