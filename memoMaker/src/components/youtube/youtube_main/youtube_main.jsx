@@ -20,6 +20,7 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
   const [nextPageToken, setNextPageToken] = useState(null);
   const [isSearch, setIsSearch] = useState(false);
   const [nowQuery, setNowQuery] = useState("");
+  const [isMoreDescription, setIsMoreDescription] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -111,6 +112,8 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
               video={selectedVideo}
               createMemo={createMemo}
               goToMemoMaker={goToMemoMaker}
+              isMoreDescription={isMoreDescription}
+              setIsMoreDescription={setIsMoreDescription}
             />
           </div>
         )}

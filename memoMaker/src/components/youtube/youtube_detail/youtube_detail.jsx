@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../button/button";
 import styles from "./youtube_detail.module.css";
 
@@ -7,6 +7,8 @@ const YoutubeDetail = ({
   video: { snippet, id },
   createMemo,
   goToMemoMaker,
+  isMoreDescription,
+  setIsMoreDescription,
 }) => {
   const { title, description } = snippet;
   const memo = {
@@ -17,6 +19,10 @@ const YoutubeDetail = ({
     content: description,
     thumbnail: `https://img.youtube.com/vi/${id}/mqdefault.jpg`,
   };
+  const moreDescription = isMoreDescription
+    ? `${styles.description} ${styles.moreDescription}`
+    : styles.description;
+
   return (
     <section className={styles.detail}>
       <iframe
@@ -36,9 +42,19 @@ const YoutubeDetail = ({
           goToMemoMaker(memo);
         }}
       />
-      <h2>{snippet.title}</h2>
+      <h2 className={styles.title}>{snippet.title}</h2>
       <h3>{snippet.channelTitle}</h3>
-      <pre className={styles.pre}>{snippet.description}</pre>
+      <pre className={moreDescription}>{snippet.description}</pre>
+      <p
+        className={styles.moreDescriptionButton}
+        onClick={() => {
+          isMoreDescription && setIsMoreDescription(false);
+          !isMoreDescription && setIsMoreDescription(true);
+        }}
+      >
+        {!isMoreDescription && "더보기"}
+        {isMoreDescription && "간략히"}
+      </p>
     </section>
   );
 };

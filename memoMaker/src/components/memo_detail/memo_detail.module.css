@@ -1,3 +1,5 @@
+@value afterColor from '../../common/colors.css';
+
 .detailBox {
   display: flex;
   flex-direction: column;

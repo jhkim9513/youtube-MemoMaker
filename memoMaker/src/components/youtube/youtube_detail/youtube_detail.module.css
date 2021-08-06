@@ -1,3 +1,12 @@
+.title:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0.1em;
+  background-color: black;
+  transform: translateY(0.5em);
+}
+
 .detail {
   padding: 0.2em;
   display: flex;
@@ -8,18 +17,43 @@
 
 .video {
   width: 100%;
+  height: 40em;
 }
 
-.pre {
+.description {
   white-space: pre-wrap;
+  margin: 0;
+}
+
+.moreDescriptionButton {
+  display: none;
 }
 
 @media screen and (max-width: 62rem) {
+  .title {
+    font-size: 1.2em;
+  }
+
   .video {
-    height: 40vh;
+    height: 50vh;
   }
   .detail {
     width: 100vw;
     height: 100%;
+  }
+
+  .description {
+    height: 10vh;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .description.moreDescription {
+    height: auto;
+  }
+
+  .moreDescriptionButton {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.8);
   }
 }
