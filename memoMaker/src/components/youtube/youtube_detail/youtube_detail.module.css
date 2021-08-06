@@ -1,9 +1,11 @@
+@value titleAfterColor, moreDescriptionButtonColor from '../../../common/colors.css';
+
 .title:after {
   content: "";
   display: block;
   width: 100%;
   height: 0.1em;
-  background-color: black;
+  background-color: titleAfterColor;
   transform: translateY(0.5em);
 }
 
@@ -26,7 +28,6 @@
 }
 
 .moreDescriptionButton {
-  width: 3em;
   display: none;
 }
 
@@ -55,6 +56,8 @@
 
   .moreDescriptionButton {
     display: inline-block;
-    color: rgba(255, 255, 255, 0.8);
+    width: 3em;
+    color: moreDescriptionButtonColor;
+    cursor: pointer;
   }
 }

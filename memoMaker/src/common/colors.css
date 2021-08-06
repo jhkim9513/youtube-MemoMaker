@@ -21,6 +21,14 @@
 @value listWhite: white;
 @value afterColor: gray;
 
+/* memoDetail */
+@value themeDarkBack: rgb(24, 24, 24);
+@value themeDarkFont: rgb(218, 216, 216);
+
 /* Button */
 @value buttonBack: black;
 @value buttonFont: white;
+
+/* youtubeDetail */
+@value titleAfterColor: black;
+@value moreDescriptionButtonColor: rgba(255, 255, 255, 0.8);

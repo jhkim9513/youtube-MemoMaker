@@ -6,7 +6,7 @@ const MemoList = ({ memoList, goToDetail, selectedMemo }) => {
   const isDetail = selectedMemo ? styles.detailList : null;
   return (
     <section className={`${styles.memoList} ${isDetail}`}>
-      <h1 className={styles.title}>MemoList</h1>
+      <h1 className={styles.title}>나의 메모리스트</h1>
       <ul className={styles.listbox}>
         {Object.keys(memoList).map((key) => (
           <Memo

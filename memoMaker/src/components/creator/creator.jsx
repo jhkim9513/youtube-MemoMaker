@@ -10,7 +10,7 @@ const Creator = ({
 }) => {
   return (
     <section className={styles.creator}>
-      <h1 className={styles.title}>Creator</h1>
+      <h1 className={styles.title}>메모 만들기</h1>
       <MemoCreateForm
         createMemo={createMemo}
         convertToEmbeddedURL={convertToEmbeddedURL}

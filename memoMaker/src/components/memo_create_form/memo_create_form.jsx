@@ -63,8 +63,8 @@ const MemoCreateForm = memo(
         ></textarea>
 
         <div className={styles.btnBox}>
-          <Button name="reset" onClick={onReset} />
-          <Button name="create" onClick={onSubmit} />
+          <Button name="리셋" onClick={onReset} />
+          <Button name="만들기" onClick={onSubmit} />
         </div>
       </form>
     );

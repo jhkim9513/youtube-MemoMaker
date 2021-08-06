@@ -36,7 +36,7 @@ const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
       <div className={styles.memoBox}>
         <div className={styles.inputAndSelectBox}>
           <input
-            className={styles.title}
+            className={`${styles.title} ${getTheme(theme)}`}
             ref={titleRef}
             name="title"
             type="text"
@@ -45,7 +45,7 @@ const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
           />
           <select
             ref={themeRef}
-            className={styles.select}
+            className={`${styles.select} ${getTheme(theme)}`}
             name="theme"
             onChange={onChange}
             value={theme}
@@ -56,7 +56,8 @@ const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
         </div>
 
         <textarea
-          className={styles.content}
+          spellcheck="false"
+          className={`${styles.content} ${getTheme(theme)}`}
           ref={contentRef}
           name="content"
           value={content}
@@ -71,5 +72,16 @@ const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
     </div>
   );
 };
+
+function getTheme(theme) {
+  switch (theme) {
+    case "light":
+      return styles.light;
+    case "dark":
+      return styles.dark;
+    default:
+      throw new Error(`unknown theme: ${theme}`);
+  }
+}
 
 export default MemoDetail;

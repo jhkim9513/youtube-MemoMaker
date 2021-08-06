@@ -1,4 +1,4 @@
-@value afterColor from '../../common/colors.css';
+@value themeDarkBack, themeDarkFont from '../../common/colors.css';
 
 .detailBox {
   display: flex;
@@ -28,6 +28,13 @@
 
 .title {
   flex-basis: 90%;
+}
+
+.title.dark,
+.select.dark,
+.content.dark {
+  background-color: themeDarkBack;
+  color: themeDarkFont;
 }
 
 .select {
