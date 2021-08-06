@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../../button/button";
 import styles from "./youtube_detail.module.css";
 
@@ -45,7 +45,7 @@ const YoutubeDetail = ({
       <h2 className={styles.title}>{snippet.title}</h2>
       <h3>{snippet.channelTitle}</h3>
       <pre className={moreDescription}>{snippet.description}</pre>
-      <p
+      <div
         className={styles.moreDescriptionButton}
         onClick={() => {
           isMoreDescription && setIsMoreDescription(false);
@@ -54,7 +54,7 @@ const YoutubeDetail = ({
       >
         {!isMoreDescription && "더보기"}
         {isMoreDescription && "간략히"}
-      </p>
+      </div>
     </section>
   );
 };

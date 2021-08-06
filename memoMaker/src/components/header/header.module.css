@@ -20,7 +20,7 @@
 .buttonBox {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 40em;
   height: 100%;
   margin-right: 5.5em;
@@ -28,6 +28,10 @@
 
 .buttonBoxMobile {
   display: none;
+}
+
+.youtubeButton {
+  margin-right: 0.5em;
 }
 
 .youtubeButton,
