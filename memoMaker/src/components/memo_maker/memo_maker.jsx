@@ -42,8 +42,8 @@ const MemoMaker = ({
     setLoading(true);
     const stopSync = memoRepository.syncMemo(userId, (memoList) => {
       setMemoList(memoList);
-      setLoading(false);
     });
+    setLoading(false);
 
     // unmount할 때 firebase통신을 꺼준다
     return () => stopSync();

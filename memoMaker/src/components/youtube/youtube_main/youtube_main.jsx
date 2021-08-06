@@ -25,7 +25,6 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
     setLoading(true);
     setIsSearch(false);
     setNowQuery("");
-
     youtube
       .mostPopular() //
       .then((data) => {
@@ -34,37 +33,27 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
       })
       .then((videos) => {
         setVideos(videos);
-        console.log("start videos : ", videos);
       })
-      .then(() => {
-        setLoading(false);
-      });
+      .then(() => setLoading(false));
   }, [youtube]);
 
   useEffect(() => {
     if (loadInView) {
-      if (!isSearch) {
-        console.log("popular");
-        console.log("nextPageToken : ", nextPageToken);
-        youtube
-          .morePopular(nextPageToken) //
-          .then((data) => {
-            setNextPageToken(data.nextPageToken);
-            setVideos((prev) => [...prev, ...data.items]);
-          });
-      } else if (isSearch) {
-        console.log("searching nowQuery : ", nowQuery);
-        console.log("nextPageToken : ", nextPageToken);
-        youtube
-          .moreSearch(nowQuery, nextPageToken) //
-          .then((data) => {
-            setNextPageToken(data.nextPageToken);
-            setVideos((prev) => [...prev, ...data.items]);
-          });
-      }
-    } else if (!loadInView) {
-      console.log("bye");
+      youtube
+        .morePopular(nextPageToken) //
+        .then((data) => {
+          setNextPageToken(data.nextPageToken);
+          setVideos((prev) => [...prev, ...data.items]);
+        });
+    } else if (isSearch) {
+      youtube
+        .moreSearch(nowQuery, nextPageToken) //
+        .then((data) => {
+          setNextPageToken(data.nextPageToken);
+          setVideos((prev) => [...prev, ...data.items]);
+        });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadInView, youtube]);
 
