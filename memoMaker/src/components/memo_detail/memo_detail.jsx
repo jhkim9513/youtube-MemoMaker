@@ -56,7 +56,7 @@ const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
         </div>
 
         <textarea
-          spellcheck="false"
+          spellCheck="false"
           className={`${styles.content} ${getTheme(theme)}`}
           ref={contentRef}
           name="content"
