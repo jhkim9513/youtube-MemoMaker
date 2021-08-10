@@ -51,7 +51,7 @@ const MemoCreateForm = memo(
         </div>
         <input
           ref={urlRef}
-          className={styles.input}
+          className={styles.urlAdd}
           type="text"
           name="url"
           placeholder="youtube url 주소를 입력해주세요."

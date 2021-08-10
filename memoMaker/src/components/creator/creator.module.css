@@ -20,6 +20,7 @@
 
 @media screen and (max-width: 62rem) {
   .creator {
-    height: 40%;
+    /* height: 40%; */
+    display: none;
   }
 }

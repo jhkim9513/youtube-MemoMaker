@@ -44,7 +44,7 @@
 @media screen and (max-width: 62rem) {
   .memoList {
     flex-basis: 100%;
-    height: 100%;
+    height: 90vh;
   }
   .memoList.detailList {
     width: 100%;
