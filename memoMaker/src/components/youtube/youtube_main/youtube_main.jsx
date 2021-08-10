@@ -22,6 +22,7 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
   const [nowQuery, setNowQuery] = useState("");
   const [isMoreDescription, setIsMoreDescription] = useState(false);
 
+  /* Lifecycle */
   useEffect(() => {
     setLoading(true);
     setIsSearch(false);
@@ -60,6 +61,7 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadInView, youtube]);
 
+  /* Function */
   const onLogout = useCallback(() => {
     auth.logout();
   }, [auth]);
@@ -118,6 +120,7 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
       : listRef?.current?.scrollIntoView({ behavior: "auto" });
   };
 
+  /* Render */
   const containerClass = loading ? styles.containerLoading : styles.container;
   return (
     <section className={styles.youtubeMain}>

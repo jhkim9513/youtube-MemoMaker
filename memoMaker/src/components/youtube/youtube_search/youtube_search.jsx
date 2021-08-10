@@ -3,6 +3,8 @@ import React, { memo, useRef } from "react";
 
 const YoutubeSearch = memo(({ onSearch }) => {
   const inputRef = useRef();
+
+  /* Function */
   const handleSearch = () => {
     const value = inputRef.current.value;
     onSearch(value);
@@ -15,6 +17,8 @@ const YoutubeSearch = memo(({ onSearch }) => {
       handleSearch();
     }
   };
+
+  /* Render */
   return (
     <header className={styles.header}>
       <div className={styles.logo} onClick={() => onSearch(null)}>

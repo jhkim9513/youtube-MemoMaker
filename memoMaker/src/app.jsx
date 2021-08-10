@@ -27,6 +27,7 @@ function App({ auth, memoRepository, youtube }) {
     // },
   });
 
+  /* Function */
   const createMemo = (memo) => {
     setMemoList((memoList) => {
       const updated = { ...memoList };
@@ -72,9 +73,11 @@ function App({ auth, memoRepository, youtube }) {
 
     const videoId = match ? match[1] || match[2] : undefined;
     if (isThumbnail && videoId) {
-      return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+      // return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+      return `//img.youtube.com/vi/${videoId}/mqdefault.jpg`;
     } else if (videoId) {
-      return `https://www.youtube.com/embed/${videoId}`;
+      // return `https://www.youtube.com/embed/${videoId}`;
+      return `//www.youtube.com/embed/${videoId}`;
     }
     return url;
   };
@@ -144,6 +147,7 @@ function App({ auth, memoRepository, youtube }) {
     setIsModal({ isOpen: false, urlChange: false, deleteMemo: false });
   };
 
+  /* Render */
   return (
     <div className={styles.app}>
       <BrowserRouter>

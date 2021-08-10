@@ -8,6 +8,7 @@ const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
   const contentRef = useRef();
   const themeRef = useRef();
 
+  /* Function */
   const onChange = (e) => {
     if (e.currentTarget == null) {
       return;
@@ -19,6 +20,7 @@ const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
     });
   };
 
+  /* Render */
   return (
     <div className={styles.detailBox}>
       {url && (

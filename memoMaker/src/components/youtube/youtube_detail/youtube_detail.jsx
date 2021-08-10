@@ -19,10 +19,11 @@ const YoutubeDetail = ({
     content: description,
     thumbnail: `https://img.youtube.com/vi/${id}/mqdefault.jpg`,
   };
+
+  /* Render */
   const moreDescription = isMoreDescription
     ? `${styles.description} ${styles.moreDescription}`
     : styles.description;
-
   return (
     <section className={styles.detail}>
       <iframe

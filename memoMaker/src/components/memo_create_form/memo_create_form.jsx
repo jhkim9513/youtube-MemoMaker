@@ -10,6 +10,7 @@ const MemoCreateForm = memo(
     const urlRef = useRef();
     const contentRef = useRef();
 
+    /* Function */
     const onReset = (e) => {
       e.preventDefault();
       formRef.current.reset();
@@ -34,6 +35,7 @@ const MemoCreateForm = memo(
       }
     };
 
+    /* Render */
     return (
       <form ref={formRef} className={styles.form}>
         <div className={styles.inputAndSelectBox}>

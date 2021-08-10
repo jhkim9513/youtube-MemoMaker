@@ -31,11 +31,7 @@ const MemoMaker = ({
   const history = useHistory();
   const [loading, setLoading] = useState(true);
 
-  // 캐시로 등록하여 onLogout이 호출 될 때마다 재생성되는것을 방지
-  const onLogout = useCallback(() => {
-    auth.logout();
-  }, [auth]);
-
+  /* Lifecycle */
   useEffect(() => {
     if (!userId) return;
 
@@ -59,10 +55,16 @@ const MemoMaker = ({
     });
   }, [auth, history, setUserId, userId]);
 
+  /* Function */
+  const onLogout = useCallback(() => {
+    auth.logout();
+  }, [auth]);
+
   const goToYoutube = useCallback(() => {
     history.push("/searchYoutube");
   }, [history]);
 
+  /* Render */
   const listClass = loading ? styles.listLoading : styles.list;
   return (
     <section className={styles.memoMaker}>
