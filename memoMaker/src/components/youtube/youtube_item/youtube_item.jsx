@@ -19,7 +19,7 @@ const YoutubeItem = memo(
           />
           <div className={styles.metadata}>
             <p className={styles.title}>{snippet.title}</p>
-            <p className={styles.channel}>{snippet.channelTtitle}</p>
+            {/* <p className={styles.channel}>{snippet.channelTtitle}</p> */}
           </div>
         </div>
       </li>
