@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../button/button";
 import styles from "./youtube_detail.module.css";
 
@@ -9,8 +9,10 @@ const YoutubeDetail = ({
   goToMemoMaker,
   isMoreDescription,
   setIsMoreDescription,
+  youtube,
 }) => {
-  const { title, description } = snippet;
+  const [description, setDescription] = useState("");
+  const { title } = snippet;
   const memo = {
     id: id,
     url: `https://www.youtube.com/embed/${id}`,
@@ -19,6 +21,14 @@ const YoutubeDetail = ({
     content: description,
     thumbnail: `https://img.youtube.com/vi/${id}/mqdefault.jpg`,
   };
+
+  /* Lifecycle */
+  useEffect(() => {
+    // search로 얻어오는 description은 생략된 내용을 가져오기 때문에 전체 내용을 가져오기 위해서 id검색으로 다시 불러옴
+    youtube
+      .getFullDescription(id)
+      .then((description) => setDescription(description));
+  }, [id, youtube]);
 
   /* Render */
   const moreDescription = isMoreDescription
@@ -43,9 +53,9 @@ const YoutubeDetail = ({
           goToMemoMaker(memo);
         }}
       />
-      <h2 className={styles.title}>{snippet.title}</h2>
+      <h2 className={styles.title}>{title}</h2>
       <h3>{snippet.channelTitle}</h3>
-      <pre className={moreDescription}>{snippet.description}</pre>
+      <pre className={moreDescription}>{description}</pre>
       <p
         className={styles.moreDescriptionButton}
         onClick={() => {

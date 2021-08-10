@@ -71,6 +71,17 @@ class Youtube {
     data.items = items;
     return data;
   }
+
+  async getFullDescription(id) {
+    const response = await this.youtube.get("videos", {
+      params: {
+        part: "snippet",
+        id: id,
+      },
+    });
+
+    return response.data.items[0].snippet.description;
+  }
 }
 
 export default Youtube;

@@ -135,6 +135,7 @@ const YoutubeMain = memo(({ auth, youtube, createMemo, setSelectedMemo }) => {
               goToMemoMaker={goToMemoMaker}
               isMoreDescription={isMoreDescription}
               setIsMoreDescription={setIsMoreDescription}
+              youtube={youtube}
             />
           </div>
         )}
