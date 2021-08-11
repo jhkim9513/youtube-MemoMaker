@@ -3,7 +3,15 @@ import Button from "../button/button";
 import styles from "./modal.module.css";
 
 const Modal = (props) => {
-  const { isModal, close, changeURL, selectedMemo, deleteMemo } = props;
+  const {
+    isModal,
+    close,
+    changeURL,
+    selectedMemo,
+    deleteMemo,
+    deleteCheckedMemo,
+    checkedMemo,
+  } = props;
   const isOpen = isModal.isOpen
     ? `${styles.openModal} ${styles.modal}`
     : styles.modal;
@@ -50,6 +58,27 @@ const Modal = (props) => {
                 name="삭제"
                 onClick={() => {
                   deleteMemo(selectedMemo);
+                  close();
+                }}
+              />
+            </div>
+          </main>
+
+          <footer className={styles.modalFooter}>
+            <Button name="close" onClick={close} />
+          </footer>
+        </section>
+      ) : null}
+
+      {isModal.deleteCheckedMemo ? (
+        <section className={styles.modalSection}>
+          <main className={styles.main}>
+            <h1>정말 삭제하시겠습니까?</h1>
+            <div className={styles.button}>
+              <Button
+                name="삭제"
+                onClick={() => {
+                  checkedMemo.size && deleteCheckedMemo(...checkedMemo);
                   close();
                 }}
               />

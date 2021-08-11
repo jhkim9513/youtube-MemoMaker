@@ -17,6 +17,10 @@ class MemoRepository {
   removeMemo(userId, memo) {
     firebaseDB.ref(`${userId}/memoList/${memo.id}`).remove();
   }
+
+  removeCheckedMemo(userId, id) {
+    firebaseDB.ref(`${userId}/memoList/${id}`).remove();
+  }
 }
 
 export default MemoRepository;

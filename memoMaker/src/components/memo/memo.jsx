@@ -1,17 +1,22 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import styles from "./memo.module.css";
 
 const DEFAULT_IMAGE = "images/default_img.png";
 
-const Memo = memo(({ memo, goToDetail, selectedMemo }) => {
+const Memo = memo(({ memo, goToDetail, selectedMemo, checkedMemoHandler }) => {
   const isDetail = selectedMemo ? styles.detailList : null;
-  const { url, title, theme, content, thumbnail } = memo;
+  const { id, url, title, theme, content, thumbnail } = memo;
+  const [checked, setChecked] = useState(false);
+  const checkHandler = (target) => {
+    setChecked(target.checked);
+    checkedMemoHandler(id, target.checked);
+  };
   return (
-    <li
-      className={`${styles.memo} ${getTheme(theme)} ${isDetail}`}
-      onClick={() => goToDetail(memo)}
-    >
-      <div className={`${styles.youtube} ${isDetail}`}>
+    <li className={`${styles.memo} ${getTheme(theme)} ${isDetail}`}>
+      <div
+        className={`${styles.youtube} ${isDetail}`}
+        onClick={() => goToDetail(memo)}
+      >
         {url !== "" ? (
           <img
             className={`${styles.default_img} ${isDetail}`}
@@ -27,10 +32,20 @@ const Memo = memo(({ memo, goToDetail, selectedMemo }) => {
         )}
       </div>
 
-      <div className={`${styles.memoBox} ${isDetail}`}>
+      <div
+        className={`${styles.memoBox} ${isDetail}`}
+        onClick={() => goToDetail(memo)}
+      >
         <h1 className={`${styles.title} ${isDetail}`}>{title}</h1>
         {!isDetail && <pre className={styles.content}>{content}</pre>}
       </div>
+
+      <input
+        type="checkbox"
+        className={`${styles.checkbox} ${isDetail}`}
+        checked={checked}
+        onChange={(e) => checkHandler(e.target)}
+      />
     </li>
   );
 });

@@ -27,6 +27,9 @@ const MemoMaker = ({
   isModal,
   openModal,
   closeModal,
+  checkedMemo,
+  setCheckedMemo,
+  deleteCheckedMemo,
 }) => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
@@ -64,6 +67,16 @@ const MemoMaker = ({
     history.push("/searchYoutube");
   }, [history]);
 
+  const checkedMemoHandler = (id, isChecked) => {
+    if (isChecked) {
+      checkedMemo.add(id);
+      setCheckedMemo(checkedMemo);
+    } else if (!isChecked && checkedMemo.has(id)) {
+      checkedMemo.delete(id);
+      setCheckedMemo(checkedMemo);
+    }
+  };
+
   /* Render */
   const listClass = loading ? styles.listLoading : styles.list;
   return (
@@ -98,7 +111,14 @@ const MemoMaker = ({
 
           <div className={listClass}>
             {!loading && (
-              <MemoList memoList={memoList} goToDetail={goToDetail} />
+              <MemoList
+                memoList={memoList}
+                goToDetail={goToDetail}
+                checkedMemoHandler={checkedMemoHandler}
+                deleteCheckedMemo={deleteCheckedMemo}
+                checkedMemo={checkedMemo}
+                openModal={openModal}
+              />
             )}
             {loading && <div className={styles.loading}></div>}
           </div>
@@ -114,6 +134,8 @@ const MemoMaker = ({
         changeURL={changeURL}
         selectedMemo={selectedMemo}
         deleteMemo={deleteMemo}
+        deleteCheckedMemo={deleteCheckedMemo}
+        checkedMemo={checkedMemo}
       ></Modal>
     </section>
   );

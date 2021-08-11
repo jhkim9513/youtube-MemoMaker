@@ -10,12 +10,14 @@ function App({ auth, memoRepository, youtube }) {
   const historyState = history?.location?.state;
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [selectedMemo, setSelectedMemo] = useState(null);
+  const [checkedMemo, setCheckedMemo] = useState(new Set());
   const [isModal, setIsModal] = useState({
     isOpen: false,
     urlChange: false,
     deleteMemo: false,
     invalidUrl: false,
     emptyTitle: false,
+    deleteCheckedMemo: false,
   });
   const [memoList, setMemoList] = useState({
     // 1: {
@@ -56,6 +58,18 @@ function App({ auth, memoRepository, youtube }) {
     });
     setSelectedMemo(null);
     memoRepository.removeMemo(userId, selectedMemo);
+  };
+
+  const deleteCheckedMemo = (...checkedMemoIds) => {
+    setCheckedMemo(new Set());
+    checkedMemoIds.forEach((id) => {
+      setMemoList((memoList) => {
+        const updated = { ...memoList };
+        delete updated[id];
+        return updated;
+      });
+      memoRepository.removeCheckedMemo(userId, id);
+    });
   };
 
   const goToDetail = (memo) => {
@@ -120,6 +134,7 @@ function App({ auth, memoRepository, youtube }) {
           deleteMemo: false,
           invalidUrl: false,
           emptyTitle: false,
+          deleteCheckedMemo: false,
         });
         return;
       }
@@ -130,6 +145,7 @@ function App({ auth, memoRepository, youtube }) {
           deleteMemo: true,
           invalidUrl: false,
           emptyTitle: false,
+          deleteCheckedMemo: false,
         });
         return;
       }
@@ -140,6 +156,7 @@ function App({ auth, memoRepository, youtube }) {
           deleteMemo: false,
           invalidUrl: true,
           emptyTitle: false,
+          deleteCheckedMemo: false,
         });
         return;
       }
@@ -150,6 +167,18 @@ function App({ auth, memoRepository, youtube }) {
           deleteMemo: false,
           invalidUrl: false,
           emptyTitle: true,
+          deleteCheckedMemo: false,
+        });
+        return;
+      }
+      case "deleteCheckedMemo": {
+        setIsModal({
+          isOpen: true,
+          urlChange: false,
+          deleteMemo: false,
+          invalidUrl: false,
+          emptyTitle: false,
+          deleteCheckedMemo: true,
         });
         return;
       }
@@ -195,6 +224,9 @@ function App({ auth, memoRepository, youtube }) {
               isModal={isModal}
               openModal={openModal}
               closeModal={closeModal}
+              checkedMemo={checkedMemo}
+              setCheckedMemo={setCheckedMemo}
+              deleteCheckedMemo={deleteCheckedMemo}
             />
           </Route>
           <Route exact path="/searchYoutube">
