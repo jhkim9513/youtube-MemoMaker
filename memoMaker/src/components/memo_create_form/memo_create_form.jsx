@@ -17,12 +17,17 @@ const MemoCreateForm = memo(
     };
 
     const onSubmit = (e) => {
-      const validUrl = validateURL(urlRef.current.value);
       e.preventDefault();
+      if (titleRef.current.value === "") {
+        openModal("emptyTitle");
+        return;
+      }
+
+      const validUrl = validateURL(urlRef.current.value);
       if (validUrl === "" || validUrl) {
         const memo = {
           id: Date.now(), //
-          title: titleRef.current.value || "",
+          title: titleRef.current.value,
           theme: themeRef.current.value,
           url: convertToEmbeddedURL(urlRef.current.value) || "",
           content: contentRef.current.value || "",

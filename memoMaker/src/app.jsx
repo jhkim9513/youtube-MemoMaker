@@ -15,6 +15,7 @@ function App({ auth, memoRepository, youtube }) {
     urlChange: false,
     deleteMemo: false,
     invalidUrl: false,
+    emptyTitle: false,
   });
   const [memoList, setMemoList] = useState({
     // 1: {
@@ -118,6 +119,7 @@ function App({ auth, memoRepository, youtube }) {
           urlChange: true,
           deleteMemo: false,
           invalidUrl: false,
+          emptyTitle: false,
         });
         return;
       }
@@ -127,6 +129,7 @@ function App({ auth, memoRepository, youtube }) {
           urlChange: false,
           deleteMemo: true,
           invalidUrl: false,
+          emptyTitle: false,
         });
         return;
       }
@@ -136,6 +139,17 @@ function App({ auth, memoRepository, youtube }) {
           urlChange: false,
           deleteMemo: false,
           invalidUrl: true,
+          emptyTitle: false,
+        });
+        return;
+      }
+      case "emptyTitle": {
+        setIsModal({
+          isOpen: true,
+          urlChange: false,
+          deleteMemo: false,
+          invalidUrl: false,
+          emptyTitle: true,
         });
         return;
       }
@@ -144,7 +158,13 @@ function App({ auth, memoRepository, youtube }) {
     }
   };
   const closeModal = () => {
-    setIsModal({ isOpen: false, urlChange: false, deleteMemo: false });
+    setIsModal({
+      isOpen: false,
+      urlChange: false,
+      deleteMemo: false,
+      invalidUrl: false,
+      emptyTitle: false,
+    });
   };
 
   /* Render */

@@ -73,6 +73,18 @@ const Modal = (props) => {
           </footer>
         </section>
       ) : null}
+
+      {isModal.emptyTitle ? (
+        <section className={styles.modalSection}>
+          <main className={styles.main}>
+            <h1>제목을 입력해주세요.</h1>
+          </main>
+
+          <footer className={styles.modalFooter}>
+            <Button name="close" onClick={close} />
+          </footer>
+        </section>
+      ) : null}
     </div>
   );
 };
