@@ -7,7 +7,9 @@ const Header = memo(({ onLogout, goToYoutube, goToMemoMaker }) => {
   const title = onLogout ? styles.title : styles.loginTitle;
   return (
     <header className={header}>
-      <h1 className={title}>Youtube Memo Maker</h1>
+      <a className={title} href="/memoMaker">
+        Youtube Memo Maker
+      </a>
       {onLogout && (
         <div className={styles.buttonBox}>
           {goToYoutube && (

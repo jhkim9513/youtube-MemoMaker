@@ -52,6 +52,8 @@
 
 .title {
   margin-left: 5em;
+  text-decoration: none;
+  font-size: 1.5em;
 }
 
 @media screen and (max-width: 62rem) {
