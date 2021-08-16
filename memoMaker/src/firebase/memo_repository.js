@@ -10,6 +10,25 @@ class MemoRepository {
     return () => ref.off();
   }
 
+  searchMemo(userId, query, onUpdate) {
+    const ref = firebaseDB.ref(`${userId}/memoList`);
+
+    ref.on("value", (snapshot) => {
+      const searchedValue = {};
+      const value = snapshot.val();
+      for (const key in value) {
+        if (
+          value[key].title.includes(query) ||
+          value[key].title.toLowerCase().includes(query) ||
+          value[key].title.toUpperCase().includes(query)
+        ) {
+          searchedValue[key] = value[key];
+        }
+      }
+      value && onUpdate(searchedValue);
+    });
+  }
+
   saveMemo(userId, memo) {
     firebaseDB.ref(`${userId}/memoList/${memo.id}`).set(memo);
   }

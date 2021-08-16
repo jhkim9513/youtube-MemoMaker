@@ -1,5 +1,6 @@
 import React from "react";
 import Memo from "../memo/memo";
+import MemoSearch from "../memo_search/memo_search";
 import styles from "./memo_list.module.css";
 
 const MemoList = ({
@@ -9,12 +10,14 @@ const MemoList = ({
   checkedMemoHandler,
   checkedMemo,
   openModal,
+  searchMemo,
 }) => {
   const isDetail = selectedMemo ? styles.detailList : null;
   return (
     <section className={`${styles.memoList} ${isDetail}`}>
       <div className={styles.listHeader}>
-        <h1 className={`${styles.title} ${isDetail}`}>나의 메모리스트</h1>
+        <h1 className={`${styles.title} ${isDetail}`}>리스트</h1>
+        <MemoSearch searchMemo={searchMemo} />
         <div
           className={`${styles.deleteBtn} ${isDetail}`}
           onClick={() => {

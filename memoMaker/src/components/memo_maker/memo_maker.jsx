@@ -77,6 +77,21 @@ const MemoMaker = ({
     }
   };
 
+  const searchMemo = useCallback(
+    (query) => {
+      setLoading(true);
+      query
+        ? memoRepository.searchMemo(userId, query, (memoList) => {
+            setMemoList(memoList);
+          })
+        : memoRepository.syncMemo(userId, (memoList) => {
+            setMemoList(memoList);
+          });
+      setLoading(false);
+    },
+    [memoRepository, setMemoList, userId]
+  );
+
   /* Render */
   const listClass = loading ? styles.listLoading : styles.list;
   return (
@@ -118,6 +133,7 @@ const MemoMaker = ({
                 deleteCheckedMemo={deleteCheckedMemo}
                 checkedMemo={checkedMemo}
                 openModal={openModal}
+                searchMemo={searchMemo}
               />
             )}
             {loading && <div className={styles.loading}></div>}
