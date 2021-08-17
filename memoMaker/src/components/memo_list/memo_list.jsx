@@ -20,13 +20,16 @@ const MemoList = ({
     <section className={`${styles.memoList} ${isDetail}`}>
       <div className={styles.listHeader}>
         <h1 className={`${styles.title} ${isDetail}`}>리스트</h1>
-        <MemoSearch
-          searchMemo={searchMemo}
-          allCheckedHandler={allCheckedHandler}
-        />
+        <div className={`${styles.MemoSearch} ${isDetail}`}>
+          <MemoSearch
+            searchMemo={searchMemo}
+            allCheckedHandler={allCheckedHandler}
+          />
+        </div>
+
         <input
           type="checkbox"
-          className={styles.checkbox}
+          className={`${styles.checkbox} ${isDetail}`}
           checked={isAllChecked}
           onChange={(e) => allCheckedHandler(e.target.checked)}
         />
