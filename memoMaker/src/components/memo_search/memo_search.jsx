@@ -1,13 +1,14 @@
 import React, { memo, useRef } from "react";
 import styles from "./memo_search.module.css";
 
-const MemoSearch = memo(({ searchMemo }) => {
+const MemoSearch = memo(({ searchMemo, allCheckedHandler }) => {
   const inputRef = useRef();
 
   /* Function */
   const handleSearch = () => {
     const value = inputRef.current.value;
     searchMemo(value);
+    allCheckedHandler(false);
   };
   const onClick = () => {
     handleSearch();

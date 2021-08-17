@@ -34,6 +34,16 @@
   flex-basis: 100%;
 }
 
+.checkbox {
+  flex-basis: auto;
+  cursor: pointer;
+  margin: 0 0 0 1em;
+  width: 3em;
+  height: 2em;
+  border: 1px solid red;
+  border-radius: 50%;
+}
+
 .deleteBtn {
   width: 100%;
   flex-basis: 2%;
@@ -78,5 +88,10 @@
   }
   .listbox {
     height: 100%;
+  }
+  .checkbox {
+    width: 2em;
+    height: 1.5em;
+    margin: 0 0.5em 0 1em;
   }
 }

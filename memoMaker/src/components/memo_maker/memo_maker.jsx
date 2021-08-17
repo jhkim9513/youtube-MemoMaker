@@ -33,6 +33,18 @@ const MemoMaker = ({
 }) => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
+  const [isAllChecked, setIsAllChecked] = useState(false);
+  const allCheckedHandler = (isChecked) => {
+    if (isChecked) {
+      setCheckedMemo(
+        new Set(Object.keys(memoList).map((key) => memoList[key].id))
+      );
+      setIsAllChecked(true);
+    } else {
+      setCheckedMemo(new Set());
+      setIsAllChecked(false);
+    }
+  };
 
   /* Lifecycle */
   useEffect(() => {
@@ -67,15 +79,18 @@ const MemoMaker = ({
     history.push("/searchYoutube");
   }, [history]);
 
-  const checkedMemoHandler = (id, isChecked) => {
-    if (isChecked) {
-      checkedMemo.add(id);
-      setCheckedMemo(checkedMemo);
-    } else if (!isChecked && checkedMemo.has(id)) {
-      checkedMemo.delete(id);
-      setCheckedMemo(checkedMemo);
-    }
-  };
+  const checkedMemoHandler = useCallback(
+    (id, isChecked) => {
+      if (isChecked) {
+        checkedMemo.add(id);
+        setCheckedMemo(checkedMemo);
+      } else if (!isChecked && checkedMemo.has(id)) {
+        checkedMemo.delete(id);
+        setCheckedMemo(checkedMemo);
+      }
+    },
+    [checkedMemo, setCheckedMemo]
+  );
 
   const searchMemo = useCallback(
     (query) => {
@@ -134,6 +149,8 @@ const MemoMaker = ({
                 checkedMemo={checkedMemo}
                 openModal={openModal}
                 searchMemo={searchMemo}
+                isAllChecked={isAllChecked}
+                allCheckedHandler={allCheckedHandler}
               />
             )}
             {loading && <div className={styles.loading}></div>}
@@ -152,6 +169,7 @@ const MemoMaker = ({
         deleteMemo={deleteMemo}
         deleteCheckedMemo={deleteCheckedMemo}
         checkedMemo={checkedMemo}
+        allCheckedHandler={allCheckedHandler}
       ></Modal>
     </section>
   );

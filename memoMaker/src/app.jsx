@@ -3,7 +3,7 @@ import styles from "./app.module.css";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import MemoMaker from "./components/memo_maker/memo_maker";
 import YoutubeMain from "./components/youtube/youtube_main/youtube_main";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App({ auth, memoRepository, youtube }) {
   const history = useHistory();
