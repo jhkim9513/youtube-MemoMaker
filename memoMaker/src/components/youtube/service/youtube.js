@@ -13,6 +13,7 @@ class Youtube {
       params: {
         part: "snippet",
         chart: "mostPopular",
+        regionCode: "kr",
         maxResults: 16,
       },
     });
@@ -24,6 +25,7 @@ class Youtube {
       params: {
         part: "snippet",
         chart: "mostPopular",
+        regionCode: "kr",
         maxResults: 16,
         pageToken: nextPageToken,
       },
