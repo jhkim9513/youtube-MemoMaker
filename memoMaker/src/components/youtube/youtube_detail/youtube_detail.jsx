@@ -46,13 +46,16 @@ const YoutubeDetail = ({
         frameBorder="0"
         allowFullScreen
       ></iframe>
-      <Button
-        name="메모하기"
-        onClick={() => {
-          createMemo(memo);
-          goToMemoMaker(memo);
-        }}
-      />
+      <div className={styles.memoButton}>
+        <Button
+          name="메모하기"
+          onClick={() => {
+            createMemo(memo);
+            goToMemoMaker(memo);
+          }}
+        />
+      </div>
+
       <h2 className={styles.title}>{title}</h2>
       <h3>{snippet.channelTitle}</h3>
       <pre className={moreDescription}>{description}</pre>

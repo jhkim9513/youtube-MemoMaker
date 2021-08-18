@@ -3,7 +3,7 @@ import styles from "./app.module.css";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import MemoMaker from "./components/memo_maker/memo_maker";
 import YoutubeMain from "./components/youtube/youtube_main/youtube_main";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function App({ auth, memoRepository, youtube }) {
   const history = useHistory();
@@ -193,6 +193,7 @@ function App({ auth, memoRepository, youtube }) {
       deleteMemo: false,
       invalidUrl: false,
       emptyTitle: false,
+      deleteCheckedMemo: false,
     });
   };
 
@@ -235,6 +236,7 @@ function App({ auth, memoRepository, youtube }) {
               youtube={youtube}
               createMemo={createMemo}
               setSelectedMemo={setSelectedMemo}
+              setUserId={setUserId}
             />
           </Route>
         </Switch>

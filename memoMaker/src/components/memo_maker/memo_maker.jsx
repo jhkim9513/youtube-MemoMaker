@@ -34,17 +34,6 @@ const MemoMaker = ({
   const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [isAllChecked, setIsAllChecked] = useState(false);
-  const allCheckedHandler = (isChecked) => {
-    if (isChecked) {
-      setCheckedMemo(
-        new Set(Object.keys(memoList).map((key) => memoList[key].id))
-      );
-      setIsAllChecked(true);
-    } else {
-      setCheckedMemo(new Set());
-      setIsAllChecked(false);
-    }
-  };
 
   /* Lifecycle */
   useEffect(() => {
@@ -106,6 +95,18 @@ const MemoMaker = ({
     },
     [memoRepository, setMemoList, userId]
   );
+
+  const allCheckedHandler = (isChecked) => {
+    if (isChecked) {
+      setCheckedMemo(
+        new Set(Object.keys(memoList).map((key) => memoList[key].id))
+      );
+      setIsAllChecked(true);
+    } else {
+      setCheckedMemo(new Set());
+      setIsAllChecked(false);
+    }
+  };
 
   /* Render */
   const listClass = loading ? styles.listLoading : styles.list;

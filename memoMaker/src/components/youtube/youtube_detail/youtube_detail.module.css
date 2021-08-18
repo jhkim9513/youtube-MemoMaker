@@ -27,6 +27,10 @@
   margin: 0;
 }
 
+.memoButton {
+  margin-top: 0.6rem;
+}
+
 .moreDescriptionButton {
   display: none;
 }
