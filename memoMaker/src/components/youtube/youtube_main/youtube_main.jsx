@@ -125,12 +125,12 @@ const YoutubeMain = memo(
       [youtube]
     );
 
-    const selectVideo = (video) => {
+    const selectVideo = useCallback((video) => {
       setSelectedVideo(video);
       detailRef.current
         ? detailRef?.current?.scrollIntoView({ behavior: "auto" })
         : listRef?.current?.scrollIntoView({ behavior: "auto" });
-    };
+    }, []);
 
     /* Render */
     const containerClass = loading ? styles.containerLoading : styles.container;

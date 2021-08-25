@@ -42,7 +42,7 @@ const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
             ref={titleRef}
             name="title"
             type="text"
-            value={title}
+            value={title || ""}
             onChange={onChange}
           />
           <select
@@ -50,7 +50,7 @@ const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
             className={`${styles.select} ${getTheme(theme)}`}
             name="theme"
             onChange={onChange}
-            value={theme}
+            value={theme || ""}
           >
             <option value="light">light</option>
             <option value="dark">dark</option>
@@ -62,7 +62,7 @@ const MemoDetail = ({ selectedMemo, updateMemo, goToMain, openModal }) => {
           className={`${styles.content} ${getTheme(theme)}`}
           ref={contentRef}
           name="content"
-          value={content}
+          value={content || ""}
           onChange={onChange}
         ></textarea>
       </div>

@@ -30,7 +30,7 @@ const MemoList = ({
         <input
           type="checkbox"
           className={`${styles.checkbox} ${isDetail}`}
-          checked={isAllChecked}
+          checked={isAllChecked || false}
           onChange={(e) => allCheckedHandler(e.target.checked)}
         />
         <div

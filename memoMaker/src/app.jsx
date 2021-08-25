@@ -3,7 +3,7 @@ import styles from "./app.module.css";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import MemoMaker from "./components/memo_maker/memo_maker";
 import YoutubeMain from "./components/youtube/youtube_main/youtube_main";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 function App({ auth, memoRepository, youtube }) {
   const history = useHistory();
@@ -31,56 +31,68 @@ function App({ auth, memoRepository, youtube }) {
   });
 
   /* Function */
-  const createMemo = (memo) => {
-    setMemoList((memoList) => {
-      const updated = { ...memoList };
-      updated[memo.id] = memo;
-      return updated;
-    });
-    memoRepository.saveMemo(userId, memo);
-  };
-
-  const updateMemo = (selectedMemo) => {
-    setMemoList((memoList) => {
-      const updated = { ...memoList };
-      updated[selectedMemo.id] = selectedMemo;
-      return updated;
-    });
-    setSelectedMemo(selectedMemo);
-    memoRepository.saveMemo(userId, selectedMemo);
-  };
-
-  const deleteMemo = (selectedMemo) => {
-    setMemoList((memoList) => {
-      const updated = { ...memoList };
-      delete updated[selectedMemo.id];
-      return updated;
-    });
-    setSelectedMemo(null);
-    memoRepository.removeMemo(userId, selectedMemo);
-  };
-
-  const deleteCheckedMemo = (...checkedMemoIds) => {
-    setCheckedMemo(new Set());
-    checkedMemoIds.forEach((id) => {
+  const createMemo = useCallback(
+    (memo) => {
       setMemoList((memoList) => {
         const updated = { ...memoList };
-        delete updated[id];
+        updated[memo.id] = memo;
         return updated;
       });
-      memoRepository.removeCheckedMemo(userId, id);
-    });
-  };
+      memoRepository.saveMemo(userId, memo);
+    },
+    [memoRepository, userId]
+  );
 
-  const goToDetail = (memo) => {
+  const updateMemo = useCallback(
+    (selectedMemo) => {
+      setMemoList((memoList) => {
+        const updated = { ...memoList };
+        updated[selectedMemo.id] = selectedMemo;
+        return updated;
+      });
+      setSelectedMemo(selectedMemo);
+      memoRepository.saveMemo(userId, selectedMemo);
+    },
+    [memoRepository, userId]
+  );
+
+  const deleteMemo = useCallback(
+    (selectedMemo) => {
+      setMemoList((memoList) => {
+        const updated = { ...memoList };
+        delete updated[selectedMemo.id];
+        return updated;
+      });
+      setSelectedMemo(null);
+      memoRepository.removeMemo(userId, selectedMemo);
+    },
+    [memoRepository, userId]
+  );
+
+  const deleteCheckedMemo = useCallback(
+    (...checkedMemoIds) => {
+      setCheckedMemo(new Set());
+      checkedMemoIds.forEach((id) => {
+        setMemoList((memoList) => {
+          const updated = { ...memoList };
+          delete updated[id];
+          return updated;
+        });
+        memoRepository.removeCheckedMemo(userId, id);
+      });
+    },
+    [memoRepository, userId]
+  );
+
+  const goToDetail = useCallback((memo) => {
     setSelectedMemo(memo);
-  };
+  }, []);
 
-  const goToMain = () => {
+  const goToMain = useCallback(() => {
     setSelectedMemo(null);
-  };
+  }, []);
 
-  const convertToEmbeddedURL = (url, isThumbnail = false) => {
+  const convertToEmbeddedURL = useCallback((url, isThumbnail = false) => {
     const regExp =
       /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-]{11}))|(?:youtu.be\/([a-zA-Z0-9-]{11})))/;
     // 전달한 정규표현식에 맞게 배열로 반환해주는 match()
@@ -95,37 +107,9 @@ function App({ auth, memoRepository, youtube }) {
       return `//www.youtube.com/embed/${videoId}`;
     }
     return url;
-  };
+  }, []);
 
-  const changeURL = (url) => {
-    const validUrl = validateURL(url);
-    if (validUrl === "" || validUrl) {
-      setSelectedMemo((selectedMemo) => {
-        const updated = selectedMemo;
-        updated.url = convertToEmbeddedURL(url);
-        updated.thumbnail = convertToEmbeddedURL(url, true);
-        updateMemo(updated);
-        return updated;
-      });
-    } else {
-      openModal("invalidUrl");
-    }
-  };
-
-  const validateURL = (url) => {
-    if (url === "") {
-      return url;
-    } else {
-      const regExp =
-        /(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9-]+)(\?[a-zA-Z0-9-=]+)?/;
-      // 전달한 정규표현식에 맞게 배열로 반환해주는 match()
-      const match = url.match(regExp);
-      const validateUrl = match ? match[0] : undefined;
-      return validateUrl;
-    }
-  };
-
-  const openModal = (whatOpen) => {
+  const openModal = useCallback((whatOpen) => {
     switch (whatOpen) {
       case "urlChange": {
         setIsModal({
@@ -185,8 +169,9 @@ function App({ auth, memoRepository, youtube }) {
       default:
         throw new Error(`unknown whatOpen: ${whatOpen}`);
     }
-  };
-  const closeModal = () => {
+  }, []);
+
+  const closeModal = useCallback(() => {
     setIsModal({
       isOpen: false,
       urlChange: false,
@@ -195,7 +180,38 @@ function App({ auth, memoRepository, youtube }) {
       emptyTitle: false,
       deleteCheckedMemo: false,
     });
-  };
+  }, []);
+
+  const validateURL = useCallback((url) => {
+    if (url === "") {
+      return url;
+    } else {
+      const regExp =
+        /(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9-]+)(\?[a-zA-Z0-9-=]+)?/;
+      // 전달한 정규표현식에 맞게 배열로 반환해주는 match()
+      const match = url.match(regExp);
+      const validateUrl = match ? match[0] : undefined;
+      return validateUrl;
+    }
+  }, []);
+
+  const changeURL = useCallback(
+    (url) => {
+      const validUrl = validateURL(url);
+      if (validUrl === "" || validUrl) {
+        setSelectedMemo((selectedMemo) => {
+          const updated = selectedMemo;
+          updated.url = convertToEmbeddedURL(url);
+          updated.thumbnail = convertToEmbeddedURL(url, true);
+          updateMemo(updated);
+          return updated;
+        });
+      } else {
+        openModal("invalidUrl");
+      }
+    },
+    [convertToEmbeddedURL, openModal, updateMemo, validateURL]
+  );
 
   /* Render */
   return (
@@ -205,7 +221,7 @@ function App({ auth, memoRepository, youtube }) {
           <Route exact path="/">
             <Login auth={auth} />
           </Route>
-          <Route path="/memoMaker">
+          <Route exact path="/memoMaker">
             <MemoMaker
               auth={auth}
               memoRepository={memoRepository}

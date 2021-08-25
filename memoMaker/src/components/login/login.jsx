@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import styles from "./login.module.css";
 
-const Login = ({ auth }) => {
+const Login = memo(({ auth }) => {
   const history = useHistory();
+
+  /* Function */
   const goToMemoMaker = (uid) => {
     history.push({
       pathname: "/memoMaker",
@@ -19,6 +21,7 @@ const Login = ({ auth }) => {
       .then((data) => goToMemoMaker(data.user.uid));
   };
 
+  /* Lifecycle */
   useEffect(() => {
     auth.onAuthChange((user) => {
       user && goToMemoMaker(user.uid);
@@ -40,13 +43,10 @@ const Login = ({ auth }) => {
             Github
           </button>
         </li>
-        {/* <li className={styles.listItem}>
-          <button className={styles.button}>Non-member login</button>
-        </li> */}
       </ul>
       <Footer />
     </section>
   );
-};
+});
 
 export default Login;
