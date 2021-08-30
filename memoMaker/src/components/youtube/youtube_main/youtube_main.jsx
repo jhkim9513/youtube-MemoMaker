@@ -24,7 +24,7 @@ const YoutubeMain = memo(
     const [isMoreDescription, setIsMoreDescription] = useState(false);
 
     /* Lifecycle */
-
+    // 유저가 로그인한 상태인지 체크
     useEffect(() => {
       auth.onAuthChange((user) => {
         if (user) {
@@ -35,6 +35,7 @@ const YoutubeMain = memo(
       });
     }, [auth, history, setUserId]);
 
+    // 한국에서 가장 인기있는 유튜브 영상 데이터를 가져와 세팅
     useEffect(() => {
       setLoading(true);
       setIsSearch(false);
@@ -51,6 +52,7 @@ const YoutubeMain = memo(
         .then(() => setLoading(false));
     }, [youtube]);
 
+    // 스크롤을 모두 내렸을 시 검색여부를 파악한 뒤 추가 데이터를 받아와 세팅
     useEffect(() => {
       if (loadInView) {
         if (isSearch) {
@@ -158,9 +160,8 @@ const YoutubeMain = memo(
             >
               <YoutubeList
                 videos={videos}
-                onVideoClick={selectVideo}
+                selectVideo={selectVideo}
                 display={selectedVideo ? "list" : "grid"}
-                loadRef={loadRef}
               />
               <div ref={loadRef}>&nbsp;</div>
             </div>

@@ -36,6 +36,7 @@ const MemoMaker = ({
   const [isAllChecked, setIsAllChecked] = useState(false);
 
   /* Lifecycle */
+  // 접속한 사용자의 메모 리스트를 불러옴
   useEffect(() => {
     if (!userId) return;
 
@@ -49,6 +50,7 @@ const MemoMaker = ({
     return () => stopSync();
   }, [memoRepository, setMemoList, userId]);
 
+  // 사용자가 현재 로그인을 한 상태인지 체크
   useEffect(() => {
     auth.onAuthChange((user) => {
       if (user) {

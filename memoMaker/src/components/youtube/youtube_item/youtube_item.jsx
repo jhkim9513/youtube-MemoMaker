@@ -3,13 +3,13 @@ import styles from "./youtube_item.module.css";
 
 const YoutubeItem = memo(
   (
-    { video, video: { snippet }, onVideoClick, display } //props.video.snippet
+    { video, video: { snippet }, selectVideo, display } //props.video.snippet
   ) => {
     const displayType = display === "list" ? styles.list : styles.grid;
     return (
       <li
         className={`${styles.container} ${displayType}`}
-        onClick={() => onVideoClick(video)}
+        onClick={() => selectVideo(video)}
       >
         <div className={styles.video}>
           <img
