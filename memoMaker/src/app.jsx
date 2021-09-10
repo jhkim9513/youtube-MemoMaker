@@ -99,6 +99,9 @@ function App({ auth, memoRepository, youtube }) {
     const match = url.match(regExp);
 
     const videoId = match ? match[1] || match[2] : undefined;
+
+    /* youtube iframe은 http 또는 https가 자동적으로 삽입되기에 https를 추가하여도되고 안해도된다. */
+
     if (isThumbnail && videoId) {
       // return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
       return `//img.youtube.com/vi/${videoId}/mqdefault.jpg`;
