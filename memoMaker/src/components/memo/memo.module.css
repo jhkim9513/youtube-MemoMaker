@@ -11,6 +11,13 @@
   height: 20%;
 }
 
+.memo:hover .default_img {
+  transform: scale(1.1);
+}
+.memo:hover .default_img.detailList {
+  transform: scale(1);
+}
+
 .memo.dark {
   background-color: listBlack;
   color: listWhite;
@@ -31,6 +38,7 @@
   width: 100%;
   height: 100%;
   border-radius: 10%;
+  transition: all 300ms ease-in;
 }
 
 .youtube {
