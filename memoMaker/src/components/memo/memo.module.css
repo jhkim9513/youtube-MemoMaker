@@ -61,10 +61,6 @@
   margin-left: 0.5em;
   margin-right: 1em;
   border-radius: 10%;
-}
-
-.youtube,
-.memoBox {
   cursor: pointer;
 }
 
@@ -129,6 +125,7 @@
   white-space: pre-line;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 
 .memoBox.detailList {
@@ -154,6 +151,10 @@
 }
 
 @media screen and (max-width: 62rem) {
+  .memo {
+    height: 15%;
+  }
+
   .youtube {
     flex-basis: 30%;
     padding: 0.1em;
@@ -163,6 +164,8 @@
 
   .memoBox {
     flex-basis: 60%;
+    display: flex;
+    align-items: center;
   }
 
   .title {
@@ -172,6 +175,10 @@
     text-overflow: ellipsis;
     overflow: hidden;
     width: 90%;
+  }
+
+  .content {
+    display: none;
   }
 
   .checkbox {
