@@ -67,6 +67,10 @@ function getTheme(theme) {
       return styles.light;
     case "dark":
       return styles.dark;
+    case "red":
+      return styles.red;
+    case "blue":
+      return styles.blue;
     default:
       throw new Error(`unknown theme: ${theme}`);
   }

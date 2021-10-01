@@ -19,11 +19,21 @@
 @value listShadow: rgba(217, 217, 217, 1);
 @value listBlack: black;
 @value listWhite: white;
+@value listRed: rgba(231,57,59,1);
+@value listRedLinear: linear-gradient(132deg, rgba(200,15,15,1) 0%, rgba(246,41,41,1) 53%, rgba(231,57,59,1) 100%);
+@value listBlue: rgb(59,73,111);
+@value listBlueLinear: linear-gradient(132deg, rgba(59,73,111,1) 0%, rgba(51,112,201,1) 53%, rgba(22,163,191,1) 100%);
 @value afterColor: gray;
 
 /* memoDetail */
 @value themeDarkBack: rgb(24, 24, 24);
 @value themeDarkFont: rgb(218, 216, 216);
+@value themeRedBack: rgba(231,57,59,1);
+@value themeRedBackLinear: linear-gradient(132deg, rgba(200,15,15,1) 0%, rgba(246,41,41,1) 53%, rgba(231,57,59,1) 100%);
+@value themeRedFont: rgb(200, 200, 255);
+@value themeBlueBack: rgba(22,163,191,1);
+@value themeBlueBackLinear: linear-gradient(132deg, rgba(59,73,111,1) 0%, rgba(51,112,201,1) 53%, rgba(22,163,191,1) 100%);
+@value themeBlueFont: rgb(218, 216, 216);
 
 /* Button */
 @value buttonBack: black;

@@ -1,4 +1,4 @@
-@value listShadow, listBlack, listWhite, afterColor from '../../common/colors.css';
+@value listShadow, listBlack, listWhite, afterColor, listRed, listRedLinear, listBlue, listBlueLinear from '../../common/colors.css';
 
 .memo {
   display: flex;
@@ -19,13 +19,25 @@
 }
 
 .memo.dark {
-  background-color: listBlack;
+  background: listBlack;
   color: listWhite;
 }
 
 .memo.light {
-  background-color: listWhite;
+  background: listWhite;
   color: listBlack;
+}
+
+.memo.red {
+  background: listRed;
+  background: listRedLinear;
+  color: listWhite;
+}
+
+.memo.blue {
+  background: listBlue;
+  background: listBlueLinear;
+  color: listWhite;
 }
 
 .memo.detailList {

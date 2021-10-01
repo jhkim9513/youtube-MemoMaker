@@ -54,6 +54,8 @@ const MemoCreateForm = memo(
           <select ref={themeRef} className={styles.select} name="theme">
             <option value="light">light</option>
             <option value="dark">dark</option>
+            <option value="red">red</option>
+            <option value="blue">blue</option>
           </select>
         </div>
         <input

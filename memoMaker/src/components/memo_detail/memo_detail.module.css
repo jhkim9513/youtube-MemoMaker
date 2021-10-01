@@ -1,4 +1,4 @@
-@value themeDarkBack, themeDarkFont from '../../common/colors.css';
+@value themeDarkBack, themeDarkFont, themeRedBack, themeRedFont, themeBlueBack, themeBlueFont, themeRedBackLinear, themeBlueBackLinear from '../../common/colors.css';
 
 .detailBox {
   display: flex;
@@ -33,8 +33,30 @@
 .title.dark,
 .select.dark,
 .content.dark {
-  background-color: themeDarkBack;
+  background: themeDarkBack;
   color: themeDarkFont;
+}
+
+.title.red,
+.content.red {
+  background-color: themeRedBack;
+  background: themeRedBackLinear;
+  color: themeRedFont;
+}
+.select.red {
+  background-color: themeRedBack;
+  color: themeRedFont;
+}
+
+.title.blue,
+.content.blue {
+  background: themeBlueBack;
+  background: themeBlueBackLinear;
+  color: themeBlueFont;
+}
+.select.blue {
+  background-color: themeBlueBack;
+  color: themeBlueFont;
 }
 
 .select {
