@@ -14,7 +14,6 @@ const MyInfo = memo(
       red: 0,
       blue: 0,
     });
-    console.log("hi");
 
     /* Lifecycle */
     useEffect(() => {
