@@ -260,7 +260,13 @@ function App({ auth, memoRepository, youtube }) {
             />
           </Route>
           <Route exact path="/myInfo">
-            <MyInfo />
+            <MyInfo
+              auth={auth}
+              setSelectedMemo={setSelectedMemo}
+              userId={userId}
+              setUserId={setUserId}
+              memoRepository={memoRepository}
+            />
           </Route>
         </Switch>
       </BrowserRouter>

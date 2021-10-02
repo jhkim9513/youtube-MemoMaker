@@ -40,6 +40,40 @@ class MemoRepository {
   removeCheckedMemo(userId, id) {
     firebaseDB.ref(`${userId}/memoList/${id}`).remove();
   }
+
+  countTheme(userId, onUpdate) {
+    const ref = firebaseDB.ref(`${userId}/memoList`);
+    let [light, dark, red, blue] = [0, 0, 0, 0];
+    ref.on("value", (snapshot) => {
+      const value = snapshot.val();
+      for (const key in value) {
+        const theme = value[key].theme;
+        switch (theme) {
+          case "light":
+            light++;
+            break;
+          case "dark":
+            dark++;
+            break;
+          case "red":
+            red++;
+            break;
+          case "blue":
+            blue++;
+            break;
+          default:
+            throw new Error(`unknown theme: ${theme}`);
+        }
+      }
+      const numberOfTheme = {
+        light: light,
+        dark: dark,
+        red: red,
+        blue: blue,
+      };
+      value && onUpdate(numberOfTheme);
+    });
+  }
 }
 
 export default MemoRepository;
