@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 import MemoMaker from "./components/memo_maker/memo_maker";
 import YoutubeMain from "./components/youtube/youtube_main/youtube_main";
 import { useCallback, useState } from "react";
+import MyInfo from "./components/my_info/my_info";
 
 function App({ auth, memoRepository, youtube }) {
   const history = useHistory();
@@ -257,6 +258,9 @@ function App({ auth, memoRepository, youtube }) {
               setSelectedMemo={setSelectedMemo}
               setUserId={setUserId}
             />
+          </Route>
+          <Route exact path="/myInfo">
+            <MyInfo />
           </Route>
         </Switch>
       </BrowserRouter>
