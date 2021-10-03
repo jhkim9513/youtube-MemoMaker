@@ -14,7 +14,6 @@ const MyInfo = memo(
     const svgRef = useRef();
     const [loading, setLoading] = useState(true);
 
-    console.log(loading);
     /* Lifecycle */
     useEffect(() => {
       auth.onAuthChange((user) => {
