@@ -14,6 +14,7 @@ const MyInfo = memo(
     const svgRef = useRef();
     const [loading, setLoading] = useState(true);
 
+    console.log(loading);
     /* Lifecycle */
     useEffect(() => {
       auth.onAuthChange((user) => {
@@ -28,8 +29,8 @@ const MyInfo = memo(
     }, [auth, history, setUserId]);
 
     useEffect(() => {
-      setLoading(true);
       memoRepository.countTheme(userId, (number) => {
+        setLoading(true);
         setNumberOfTheme(number);
         setLoading(false);
       });
@@ -73,7 +74,9 @@ const MyInfo = memo(
         .transition()
         .duration(duration)
         .delay((d, i) => i * delay)
-        .attr("x", (d, i) => `${(d / maxNum) * positionXPercent}%`);
+        .attr("x", (d) =>
+          d !== 0 ? `${(d / maxNum) * positionXPercent}%` : chartWidth
+        );
     }, [numberOfTheme, loading]);
 
     /* Function */
