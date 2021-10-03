@@ -65,12 +65,13 @@ class MemoRepository {
             throw new Error(`unknown theme: ${theme}`);
         }
       }
-      const numberOfTheme = {
-        light: light,
-        dark: dark,
-        red: red,
-        blue: blue,
-      };
+      // const numberOfTheme = {
+      //   light: light,
+      //   dark: dark,
+      //   red: red,
+      //   blue: blue,
+      // };
+      const numberOfTheme = [light, dark, red, blue];
       value && onUpdate(numberOfTheme);
     });
   }
