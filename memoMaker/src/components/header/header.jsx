@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import Button from "../button/button";
 import styles from "./header.module.css";
 
-const Header = memo(({ onLogout, goToYoutube, goToMemoMaker }) => {
+const Header = memo(({ onLogout, goToYoutube, goToMemoMaker, goToMyInfo }) => {
   const header = onLogout ? styles.header : styles.loginHeader;
   const title = onLogout ? styles.title : styles.loginTitle;
   return (
@@ -20,6 +20,11 @@ const Header = memo(({ onLogout, goToYoutube, goToMemoMaker }) => {
           {goToMemoMaker && (
             <div className={styles.memoMakerButton}>
               <Button name="메인으로" onClick={() => goToMemoMaker()} />
+            </div>
+          )}
+          {goToMyInfo && (
+            <div className={styles.myInfoButton}>
+              <Button name="내정보" onClick={() => goToMyInfo()} />
             </div>
           )}
           {onLogout && (
@@ -49,9 +54,20 @@ const Header = memo(({ onLogout, goToYoutube, goToMemoMaker }) => {
               />
             </div>
           )}
+          {goToMyInfo && (
+            <div className={styles.myInfoButton}>
+              <Button
+                name={<i className="fas fa-user-secret"></i>}
+                onClick={() => goToMyInfo()}
+              />
+            </div>
+          )}
           {onLogout && (
             <div className={styles.logout}>
-              <Button name="logout" onClick={() => onLogout()} />
+              <Button
+                name={<i className="fas fa-power-off"></i>}
+                onClick={() => onLogout()}
+              />
             </div>
           )}
         </div>

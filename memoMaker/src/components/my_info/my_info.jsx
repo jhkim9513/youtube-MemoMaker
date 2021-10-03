@@ -57,7 +57,9 @@ const MyInfo = memo(
         .transition()
         .duration(duration)
         .delay((d, i) => i * delay)
-        .attr("width", (d) => `${(d / maxNum) * positionXPercent - 1}%`);
+        .attr("width", (d) =>
+          d !== 0 ? `${(d / maxNum) * positionXPercent - 1}%` : chartWidth
+        );
 
       svg
         .selectAll("text")

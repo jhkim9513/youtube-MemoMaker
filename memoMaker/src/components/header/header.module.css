@@ -39,7 +39,8 @@
   flex-basis: 50%;
 }
 
-.logout {
+.logout,
+.myInfoButton {
   flex-basis: 20%;
 }
 

@@ -70,6 +70,10 @@ const MemoMaker = ({
     history.push("/searchYoutube");
   }, [history]);
 
+  const goToMyInfo = useCallback(() => {
+    history.push("/myInfo");
+  }, [history]);
+
   const checkedMemoHandler = useCallback(
     (id, isChecked) => {
       if (isChecked) {
@@ -117,7 +121,11 @@ const MemoMaker = ({
   const listClass = loading ? styles.listLoading : styles.list;
   return (
     <section className={styles.memoMaker}>
-      <Header onLogout={onLogout} goToYoutube={goToYoutube} />
+      <Header
+        onLogout={onLogout}
+        goToYoutube={goToYoutube}
+        goToMyInfo={goToMyInfo}
+      />
       {selectedMemo !== null ? (
         <div className={styles.selectedScreen}>
           <div className={styles.detail}>
